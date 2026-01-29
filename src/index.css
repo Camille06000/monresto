@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-[#0b1220] text-white font-body antialiased;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+.card {
+  @apply bg-white/5 border border-white/10 rounded-2xl shadow-card;
+}
+
+.glass {
+  @apply backdrop-blur-md bg-white/5 border border-white/10;
+}
+
+input,
+select,
+textarea {
+  @apply bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition;
+}
+
+button:disabled {
+  @apply opacity-60 cursor-not-allowed;
+}

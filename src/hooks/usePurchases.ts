@@ -1,0 +1,71 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { supabase, uploadToBucket } from '../lib/supabase';
+import type { Purchase } from '../lib/types';
+
+const PURCHASES_KEY = ['purchases'];
+
+export interface PurchasePayload {
+  supplier_id?: string | null;
+  purchase_date: string;
+  items: Array<{ product_id: string; quantity: number; unit_price: number }>;
+  invoiceFile?: File | null;
+  notes?: string;
+}
+
+export function usePurchases() {
+  const queryClient = useQueryClient();
+
+  const purchases = useQuery({
+    queryKey: PURCHASES_KEY,
+    queryFn: async (): Promise<Purchase[]> => {
+      const { data, error } = await supabase
+        .from('purchases')
+        .select('*, supplier:suppliers(*), items:purchase_items(id, product_id, quantity, unit_price, total_price, product:products(*))')
+        .order('purchase_date', { ascending: false });
+      if (error) throw error;
+      return data as unknown as Purchase[];
+    },
+  });
+
+  const create = useMutation({
+    mutationFn: async (payload: PurchasePayload) => {
+      let invoice_url: string | undefined;
+      if (payload.invoiceFile) {
+        invoice_url = await uploadToBucket({ bucket: 'invoices', file: payload.invoiceFile, pathPrefix: 'purchases' });
+      }
+
+      const { data: purchase, error } = await supabase
+        .from('purchases')
+        .insert({
+          supplier_id: payload.supplier_id ?? null,
+          purchase_date: payload.purchase_date,
+          invoice_url,
+          notes: payload.notes ?? null,
+        })
+        .select()
+        .single();
+      if (error) throw error;
+
+      const items = payload.items.map((item) => ({
+        ...item,
+        purchase_id: purchase.id,
+      }));
+      const { error: itemsError } = await supabase.from('purchase_items').insert(items);
+      if (itemsError) throw itemsError;
+
+      const { data: fullPurchase, error: fetchError } = await supabase
+        .from('purchases')
+        .select('*, supplier:suppliers(*), items:purchase_items(id, product_id, quantity, unit_price, total_price, product:products(*))')
+        .eq('id', purchase.id)
+        .single();
+      if (fetchError) throw fetchError;
+      return fullPurchase as Purchase;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: PURCHASES_KEY });
+      queryClient.invalidateQueries({ queryKey: ['stock'] });
+    },
+  });
+
+  return { purchases, create };
+}

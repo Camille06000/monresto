@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "สตรีทเรสโต้",
+    "tagline": "จัดการร้านริมทางทุกวัน",
+    "logout": "ออกจากระบบ",
+    "language": "ภาษา"
+  },
+  "nav": {
+    "dashboard": "แดชบอร์ด",
+    "purchases": "การซื้อ",
+    "sales": "การขาย",
+    "stock": "สต็อก",
+    "dishes": "เมนู",
+    "products": "สินค้า",
+    "analytics": "วิเคราะห์",
+    "settings": "ตั้งค่า"
+  },
+  "login": {
+    "title": "เข้าสู่ระบบ",
+    "subtitle": "ติดตามการซื้อ การขาย และสต็อกแบบเรียลไทม์",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "submit": "เข้าสู่ระบบ",
+    "loading": "กำลังเข้าสู่ระบบ..."
+  },
+  "actions": {
+    "add": "เพิ่ม",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "view": "ดู",
+    "validateSale": "บันทึกการขาย",
+    "validatePurchase": "บันทึกการซื้อ",
+    "newPurchase": "เพิ่มการซื้อ",
+    "newDish": "เมนูใหม่",
+    "adjustStock": "ปรับสต็อก"
+  },
+  "dashboard": {
+    "today": "วันนี้",
+    "revenue": "รายได้",
+    "costs": "ต้นทุน",
+    "margin": "มาร์จิ้น",
+    "topDishes": "เมนูขายดี",
+    "alerts": "แจ้งเตือนสต็อก",
+    "sales": "ออเดอร์",
+    "seeAll": "ดูทั้งหมด"
+  },
+  "purchases": {
+    "title": "การซื้อ",
+    "supplier": "ซัพพลายเออร์",
+    "date": "วันที่",
+    "invoice": "รูปใบเสร็จ",
+    "product": "สินค้า",
+    "quantity": "ปริมาณ",
+    "unit": "หน่วย",
+    "unitPrice": "ราคาต่อหน่วย",
+    "total": "รวม",
+    "addProduct": "เพิ่มสินค้า",
+    "notes": "บันทึก",
+    "listTitle": "ประวัติการซื้อ",
+    "lines": "รายการ"
+  },
+  "sales": {
+    "title": "ขายด่วน",
+    "search": "ค้นหาเมนู...",
+    "cart": "ตะกร้า",
+    "emptyCart": "ยังไม่มีสินค้า",
+    "total": "รวม",
+    "qty": "จำนวน"
+  },
+  "stock": {
+    "title": "สต็อก",
+    "alerts": "แจ้งเตือน",
+    "ok": "พร้อม",
+    "reorder": "สั่งเพิ่ม",
+    "adjust": "ปรับ",
+    "quantity": "ปริมาณ",
+    "type": "ประเภท",
+    "reason": "เหตุผล",
+    "adjustType": {
+      "loss": "เสียหาย",
+      "waste": "ของเสีย",
+      "correction": "ปรับแก้",
+      "initial": "เริ่มต้น"
+    }
+  },
+  "dishes": {
+    "title": "เมนู",
+    "price": "ราคาขาย",
+    "ingredients": "วัตถุดิบ",
+    "addIngredient": "เพิ่มวัตถุดิบ",
+    "cost": "ต้นทุน",
+    "margin": "มาร์จิ้น",
+    "name": "ชื่อ"
+  },
+  "products": {
+    "title": "สินค้า",
+    "search": "ค้นหาสินค้า...",
+    "unit": "หน่วย",
+    "reorderLevel": "จุดสั่งซื้อ",
+    "lastPrice": "ราคาล่าสุด",
+    "category": "หมวดหมู่",
+    "add": "เพิ่มสินค้า"
+  },
+  "settings": {
+    "title": "ตั้งค่า",
+    "language": "ภาษา",
+    "theme": "ธีม",
+    "currency": "สกุลเงิน"
+  },
+  "analyticsPage": {
+    "revenue7d": "รายได้ 7 วัน",
+    "salesPerDay": "ยอดขายต่อวัน"
+  },
+  "forms": {
+    "required": "จำเป็นต้องกรอก",
+    "selectOption": "เลือก..."
+  },
+  "alerts": {
+    "insufficientStock": "สต็อกไม่พอ",
+    "error": "ผิดพลาด",
+    "success": "สำเร็จ"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "empty": "ยังไม่มีข้อมูล"
+  },
+  "suppliers": {
+    "title": "ซัพพลายเออร์",
+    "add": "เพิ่มซัพพลายเออร์",
+    "addDescription": "เพิ่มซัพพลายเออร์ใหม่",
+    "name": "ชื่อ",
+    "contact": "ผู้ติดต่อ",
+    "phone": "โทรศัพท์",
+    "email": "อีเมล"
+  }
+}

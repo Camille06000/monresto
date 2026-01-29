@@ -1,0 +1,29 @@
+diff --git a/node_modules/rollup/dist/native.js b/node_modules/rollup/dist/native.js
+index 5bb9f04..3d7fb5f 100644
+--- a/node_modules/rollup/dist/native.js
++++ b/node_modules/rollup/dist/native.js
+@@
+-const { parse, parseAsync, xxhashBase64Url, xxhashBase36, xxhashBase16 } = requireWithFriendlyError(
+-	existsSync(path.join(__dirname, localName)) ? localName : `@rollup/rollup-${packageBase}`
+-);
++let binding;
++try {
++	binding = requireWithFriendlyError(
++		existsSync(path.join(__dirname, localName)) ? localName : `@rollup/rollup-${packageBase}`
++	);
++} catch (error) {
++	// On some systems (e.g. Windows with Application Control), native .node files can be blocked.
++	// Fall back to the official WASM build that ships the same parser API.
++	try {
++		binding = require('@rollup/wasm-node/dist/native.js');
++		console.warn(
++			'[rollup] Native binary unavailable; using @rollup/wasm-node (WASM) fallback.',
++			error?.message || error
++		);
++	} catch {
++		// Re-throw original error to preserve the helpful message.
++		throw error;
++	}
++}
++
++const { parse, parseAsync, xxhashBase64Url, xxhashBase36, xxhashBase16 } = binding;

@@ -1,0 +1,14 @@
+## Project Rules
+
+- Use React 18 with TypeScript strict mode
+- Use Supabase for backend (no custom API)
+- Mobile-first design (min-width: 375px)
+- All text must use i18next (no hardcoded strings)
+- Use Tailwind utility classes only
+- Database operations through Supabase client
+- All mutations must respect RLS policies
+- Use React Query for data fetching
+- Implement optimistic updates for better UX
+- Handle errors with toast notifications
+- Use Zustand for global state (auth, language, theme)
+- Follow Airbnb TypeScript style guide

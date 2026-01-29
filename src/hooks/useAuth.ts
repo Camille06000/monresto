@@ -1,0 +1,86 @@
+import { useEffect, useState } from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { supabase } from '../lib/supabase';
+import type { Profile } from '../lib/types';
+import { useStore } from '../store/useStore';
+
+const PROFILE_KEY = ['profile'];
+
+export function useAuth() {
+  const queryClient = useQueryClient();
+  const { profile, setProfile, setLanguage, reset } = useStore();
+  const [initializing, setInitializing] = useState(true);
+
+  const profileQuery = useQuery({
+    queryKey: PROFILE_KEY,
+    queryFn: async (): Promise<Profile | null> => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session?.user) return null;
+      const { data, error } = await supabase.from('profiles').select('*').eq('id', session.user.id).single();
+      if (error) throw error;
+      return data as Profile;
+    },
+    enabled: !profile,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  useEffect(() => {
+    if (profileQuery.data) {
+      setProfile(profileQuery.data);
+      setLanguage(profileQuery.data.language);
+    }
+    if (!profileQuery.isLoading) setInitializing(false);
+  }, [profileQuery.data, profileQuery.isLoading, setProfile, setLanguage]);
+
+  useEffect(() => {
+    const { data: listener } = supabase.auth.onAuthStateChange(async (event) => {
+      if (event === 'SIGNED_OUT') {
+        reset();
+        queryClient.clear();
+      } else {
+        await queryClient.invalidateQueries({ queryKey: PROFILE_KEY });
+      }
+    });
+    setInitializing(false);
+    return () => listener.subscription.unsubscribe();
+  }, [queryClient, reset]);
+
+  const signIn = useMutation({
+    mutationFn: async (params: { email: string; password: string }) => {
+      const { error } = await supabase.auth.signInWithPassword(params);
+      if (error) throw error;
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      if (!user) return null;
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+      if (profileError) throw profileError;
+      setProfile(profileData as Profile);
+      setLanguage((profileData as Profile).language);
+      return profileData as Profile;
+    },
+  });
+
+  const signOut = useMutation({
+    mutationFn: async () => {
+      await supabase.auth.signOut();
+      reset();
+      queryClient.clear();
+    },
+  });
+
+  return {
+    profile: profile ?? profileQuery.data ?? null,
+    loading: initializing || profileQuery.isFetching,
+    signIn: signIn.mutateAsync,
+    signingIn: signIn.isPending,
+    signOut: signOut.mutateAsync,
+    signingOut: signOut.isPending,
+  };
+}

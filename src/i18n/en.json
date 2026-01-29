@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Street Resto",
+    "tagline": "Daily ops for street food",
+    "logout": "Logout",
+    "language": "Language"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "purchases": "Purchases",
+    "sales": "Sales",
+    "stock": "Stock",
+    "dishes": "Dishes",
+    "products": "Products",
+    "analytics": "Analytics",
+    "settings": "Settings"
+  },
+  "login": {
+    "title": "Sign in",
+    "subtitle": "Track purchases, sales and stock in real time.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "loading": "Signing in..."
+  },
+  "actions": {
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "validateSale": "Submit sale",
+    "validatePurchase": "Save purchase",
+    "newPurchase": "New purchase",
+    "newDish": "New dish",
+    "adjustStock": "Stock adjustment"
+  },
+  "dashboard": {
+    "today": "Today",
+    "revenue": "Revenue",
+    "costs": "Costs",
+    "margin": "Margin",
+    "topDishes": "Top dishes",
+    "alerts": "Stock alerts",
+    "sales": "Sales",
+    "seeAll": "See all"
+  },
+  "purchases": {
+    "title": "Purchases",
+    "supplier": "Supplier",
+    "date": "Date",
+    "invoice": "Invoice photo",
+    "product": "Product",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "unitPrice": "Unit price",
+    "total": "Total",
+    "addProduct": "Add product",
+    "notes": "Notes",
+    "listTitle": "History",
+    "lines": "lines"
+  },
+  "sales": {
+    "title": "Quick sale",
+    "search": "Search dish...",
+    "cart": "Cart",
+    "emptyCart": "Cart is empty",
+    "total": "Total",
+    "qty": "Qty"
+  },
+  "stock": {
+    "title": "Stock",
+    "alerts": "Alerts",
+    "ok": "OK",
+    "reorder": "Reorder",
+    "adjust": "Adjust",
+    "quantity": "Quantity",
+    "type": "Type",
+    "reason": "Reason",
+    "adjustType": {
+      "loss": "Loss",
+      "waste": "Waste",
+      "correction": "Correction",
+      "initial": "Initial"
+    }
+  },
+  "dishes": {
+    "title": "Dishes",
+    "price": "Price",
+    "ingredients": "Ingredients",
+    "addIngredient": "Add ingredient",
+    "cost": "Cost",
+    "margin": "Margin",
+    "name": "Name"
+  },
+  "products": {
+    "title": "Products",
+    "search": "Search product...",
+    "unit": "Unit",
+    "reorderLevel": "Reorder level",
+    "lastPrice": "Last price",
+    "category": "Category",
+    "add": "Add product"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "currency": "Currency"
+  },
+  "analyticsPage": {
+    "revenue7d": "Revenue (7d)",
+    "salesPerDay": "Sales per day"
+  },
+  "forms": {
+    "required": "Required field",
+    "selectOption": "Select..."
+  },
+  "alerts": {
+    "insufficientStock": "Not enough stock",
+    "error": "Error",
+    "success": "Success"
+  },
+  "common": {
+    "loading": "Loading...",
+    "empty": "No data"
+  },
+  "suppliers": {
+    "title": "Suppliers",
+    "add": "New supplier",
+    "addDescription": "Add a new supplier",
+    "name": "Name",
+    "contact": "Contact",
+    "phone": "Phone",
+    "email": "Email"
+  }
+}

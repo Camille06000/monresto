@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Mon Resto",
+    "tagline": "Gestion quotidienne du street-food",
+    "logout": "Déconnexion",
+    "language": "Langue"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "purchases": "Achats",
+    "sales": "Ventes",
+    "stock": "Stock",
+    "dishes": "Plats",
+    "products": "Produits",
+    "analytics": "Analytics",
+    "settings": "Paramètres"
+  },
+  "login": {
+    "title": "Connexion",
+    "subtitle": "Suivez achats, ventes et stock en temps réel.",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "loading": "Connexion..."
+  },
+  "actions": {
+    "add": "Ajouter",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "view": "Voir",
+    "validateSale": "Valider vente",
+    "validatePurchase": "Valider achat",
+    "newPurchase": "Nouvel achat",
+    "newDish": "Nouveau plat",
+    "adjustStock": "Ajustement stock"
+  },
+  "dashboard": {
+    "today": "Aujourd'hui",
+    "revenue": "CA",
+    "costs": "Coûts",
+    "margin": "Marge",
+    "topDishes": "Top plats",
+    "alerts": "Alertes stock",
+    "sales": "Ventes",
+    "seeAll": "Voir tout"
+  },
+  "purchases": {
+    "title": "Achats",
+    "supplier": "Fournisseur",
+    "date": "Date",
+    "invoice": "Photo facture",
+    "product": "Produit",
+    "quantity": "Quantité",
+    "unit": "Unité",
+    "unitPrice": "Prix unitaire",
+    "total": "Total",
+    "addProduct": "Ajouter produit",
+    "notes": "Notes",
+    "listTitle": "Historique achats",
+    "lines": "lignes"
+  },
+  "sales": {
+    "title": "Vente rapide",
+    "search": "Rechercher plat...",
+    "cart": "Panier",
+    "emptyCart": "Panier vide",
+    "total": "Total",
+    "qty": "Qté"
+  },
+  "stock": {
+    "title": "Stock",
+    "alerts": "Alertes",
+    "ok": "OK",
+    "reorder": "Commander",
+    "adjust": "Ajustement",
+    "quantity": "Quantité",
+    "type": "Type",
+    "reason": "Raison",
+    "adjustType": {
+      "loss": "Perte",
+      "waste": "Gaspillage",
+      "correction": "Correction",
+      "initial": "Initial"
+    }
+  },
+  "dishes": {
+    "title": "Plats",
+    "price": "Prix vente",
+    "ingredients": "Ingrédients",
+    "addIngredient": "Ajouter ingrédient",
+    "cost": "Coût",
+    "margin": "Marge",
+    "name": "Nom"
+  },
+  "products": {
+    "title": "Produits",
+    "search": "Rechercher produit...",
+    "unit": "Unité",
+    "reorderLevel": "Seuil alerte",
+    "lastPrice": "Dernier prix",
+    "category": "Catégorie",
+    "add": "Ajouter produit"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "theme": "Thème",
+    "currency": "Devise"
+  },
+  "analyticsPage": {
+    "revenue7d": "CA sur 7 jours",
+    "salesPerDay": "Ventes par jour"
+  },
+  "forms": {
+    "required": "Champ requis",
+    "selectOption": "Sélectionner..."
+  },
+  "alerts": {
+    "insufficientStock": "Stock insuffisant",
+    "error": "Erreur",
+    "success": "Succès"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "empty": "Aucune donnée"
+  },
+  "suppliers": {
+    "title": "Fournisseurs",
+    "add": "Nouveau fournisseur",
+    "addDescription": "Ajouter un nouveau fournisseur",
+    "name": "Nom",
+    "contact": "Contact",
+    "phone": "Téléphone",
+    "email": "Email"
+  }
+}
