@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { Plus, X } from 'lucide-react';
+import { Plus, X, Pencil, Trash2 } from 'lucide-react';
 import { usePurchases } from '../hooks/usePurchases';
 import { useProducts } from '../hooks/useProducts';
 import { useSuppliers } from '../hooks/useSuppliers';
@@ -11,7 +11,7 @@ import { Input } from '../components/ui/Input';
 import { Select } from '../components/ui/Select';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import type { Product } from '../lib/types';
+import type { Product, Purchase } from '../lib/types';
 import { formatCurrency } from '../lib/utils';
 import { useStore } from '../store/useStore';
 
@@ -32,12 +32,15 @@ type SupplierFormValues = {
 
 export function Purchases() {
   const { t } = useTranslation();
-  const { language } = useStore();
+  const { language, profile } = useStore();
   const navigate = useNavigate();
-  const { purchases, create } = usePurchases();
+  const { purchases, create, update, remove } = usePurchases();
   const { products } = useProducts();
   const { suppliers, create: createSupplier } = useSuppliers();
   const [showSupplierForm, setShowSupplierForm] = useState(false);
+  const [editing, setEditing] = useState<Purchase | null>(null);
+
+  const canManage = profile?.role === 'admin' || profile?.role === 'manager';
 
   const form = useForm<PurchaseFormValues>({
     defaultValues: {
@@ -51,26 +54,73 @@ export function Purchases() {
     defaultValues: { name: '', contact_name: '', phone: '', email: '' },
   });
 
-  const { fields, append, remove } = useFieldArray({ control: form.control, name: 'items' });
+  const { fields, append, remove: removeItem, replace } = useFieldArray({ control: form.control, name: 'items' });
   const showProductCta = !products.isLoading && (products.data?.length ?? 0) === 0;
+  const isSaving = create.isPending || update.isPending;
+
+  const resetForm = () => {
+    form.reset({
+      supplier_id: '',
+      purchase_date: new Date().toISOString().slice(0, 10),
+      items: [{ product_id: '', quantity: 1, unit_price: 0 }],
+    });
+    setEditing(null);
+  };
+
+  const handleEdit = (purchase: Purchase) => {
+    setEditing(purchase);
+    const items = purchase.items?.map((item) => ({
+      product_id: item.product_id,
+      quantity: item.quantity,
+      unit_price: item.unit_price,
+    })) ?? [{ product_id: '', quantity: 1, unit_price: 0 }];
+
+    form.reset({
+      supplier_id: purchase.supplier_id ?? '',
+      purchase_date: purchase.purchase_date,
+      notes: purchase.notes ?? '',
+      items: items.length > 0 ? items : [{ product_id: '', quantity: 1, unit_price: 0 }],
+    });
+    replace(items.length > 0 ? items : [{ product_id: '', quantity: 1, unit_price: 0 }]);
+  };
 
   const onSubmit = async (values: PurchaseFormValues) => {
     try {
-      await create.mutateAsync({
-        supplier_id: values.supplier_id || null,
-        purchase_date: values.purchase_date,
-        notes: values.notes,
-        items: values.items,
-        invoiceFile: values.invoiceFile?.[0],
-      });
-      toast.success(t('actions.validatePurchase'));
-      form.reset({
-        supplier_id: '',
-        purchase_date: new Date().toISOString().slice(0, 10),
-        items: [{ product_id: '', quantity: 1, unit_price: 0 }],
-      });
+      if (editing) {
+        await update.mutateAsync({
+          id: editing.id,
+          supplier_id: values.supplier_id || null,
+          purchase_date: values.purchase_date,
+          notes: values.notes,
+          items: values.items.filter((item) => item.product_id),
+          invoiceFile: values.invoiceFile?.[0],
+        });
+        toast.success(t('actions.save'));
+      } else {
+        await create.mutateAsync({
+          supplier_id: values.supplier_id || null,
+          purchase_date: values.purchase_date,
+          notes: values.notes,
+          items: values.items.filter((item) => item.product_id),
+          invoiceFile: values.invoiceFile?.[0],
+        });
+        toast.success(t('actions.validatePurchase'));
+      }
+      resetForm();
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Error';
+      toast.error(message);
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!window.confirm(t('actions.confirmDelete'))) return;
+    try {
+      await remove.mutateAsync(id);
+      toast.success(t('actions.delete'));
+      if (editing?.id === id) resetForm();
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : t('alerts.error');
       toast.error(message);
     }
   };
@@ -81,7 +131,6 @@ export function Purchases() {
       toast.success(t('alerts.success'));
       supplierForm.reset();
       setShowSupplierForm(false);
-      // Select the newly created supplier
       form.setValue('supplier_id', newSupplier.id);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : 'Error';
@@ -93,7 +142,7 @@ export function Purchases() {
     <div className="space-y-4 pb-16">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-400">{t('actions.newPurchase')}</p>
+          <p className="text-sm text-gray-400">{editing ? t('actions.edit') : t('actions.newPurchase')}</p>
           <h1 className="text-2xl font-bold text-white">{t('purchases.title')}</h1>
         </div>
         <Button onClick={() => append({ product_id: '', quantity: 1, unit_price: 0 })} variant="secondary">
@@ -110,7 +159,6 @@ export function Purchases() {
         </div>
       )}
 
-      {/* Supplier creation modal */}
       {showSupplierForm && (
         <Card title={t('suppliers.add')}>
           <form className="space-y-3" onSubmit={supplierForm.handleSubmit(onSubmitSupplier)}>
@@ -137,8 +185,15 @@ export function Purchases() {
         </Card>
       )}
 
-      <Card>
+      <Card title={editing ? t('actions.edit') : t('actions.newPurchase')}>
         <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+          {editing && (
+            <div className="flex justify-end">
+              <Button type="button" variant="ghost" onClick={resetForm}>
+                <X size={16} className="mr-1" /> {t('actions.cancel')}
+              </Button>
+            </div>
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex items-end gap-2">
               <div className="flex-1">
@@ -199,7 +254,7 @@ export function Purchases() {
                     )}
                   </p>
                 </div>
-                <Button variant="ghost" type="button" onClick={() => remove(index)} className="text-danger">
+                <Button variant="ghost" type="button" onClick={() => removeItem(index)} className="text-danger">
                   {t('actions.delete')}
                 </Button>
               </div>
@@ -209,8 +264,8 @@ export function Purchases() {
           <Input label={t('purchases.invoice')} type="file" accept="image/*" {...form.register('invoiceFile')} />
           <Input label={t('purchases.notes')} {...form.register('notes')} />
 
-          <Button type="submit" block variant="primary" disabled={create.isPending}>
-            {create.isPending ? t('common.loading') : t('actions.validatePurchase')}
+          <Button type="submit" block variant="primary" disabled={isSaving}>
+            {isSaving ? t('common.loading') : editing ? t('actions.save') : t('actions.validatePurchase')}
           </Button>
         </form>
       </Card>
@@ -223,14 +278,27 @@ export function Purchases() {
               <div>
                 <p className="font-semibold text-white">{purchase.supplier?.name ?? '—'}</p>
                 <p className="text-xs text-gray-400">{purchase.purchase_date}</p>
+                {purchase.notes && <p className="text-xs text-gray-500 mt-1">{purchase.notes}</p>}
               </div>
-              <div className="text-right">
-                <p className="font-bold text-white">
-                  {formatCurrency(purchase.total_amount ?? 0, 'THB', language)}
-                </p>
-                <p className="text-xs text-gray-400">
-                  {purchase.items?.length ?? 0} {t('purchases.lines')}
-                </p>
+              <div className="flex items-center gap-3">
+                <div className="text-right">
+                  <p className="font-bold text-white">
+                    {formatCurrency(purchase.total_amount ?? 0, 'THB', language)}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {purchase.items?.length ?? 0} {t('purchases.lines')}
+                  </p>
+                </div>
+                {canManage && (
+                  <div className="flex items-center gap-1">
+                    <Button variant="ghost" onClick={() => handleEdit(purchase)} disabled={update.isPending}>
+                      <Pencil size={16} />
+                    </Button>
+                    <Button variant="ghost" onClick={() => handleDelete(purchase.id)} disabled={remove.isPending}>
+                      <Trash2 size={16} className="text-red-400" />
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
