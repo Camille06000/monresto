@@ -20,10 +20,18 @@
   "login": {
     "title": "Connexion",
     "subtitle": "Suivez achats, ventes et stock en temps réel.",
+    "registerTitle": "Créer un compte",
+    "registerSubtitle": "Inscrivez-vous pour gérer votre restaurant.",
     "email": "Email",
     "password": "Mot de passe",
+    "fullName": "Nom complet",
     "submit": "Se connecter",
-    "loading": "Connexion..."
+    "registerSubmit": "S'inscrire",
+    "loading": "Chargement...",
+    "registered": "Compte créé avec succès !",
+    "passwordMinLength": "6 caractères minimum",
+    "noAccount": "Pas encore de compte ? S'inscrire",
+    "hasAccount": "Déjà un compte ? Se connecter"
   },
   "actions": {
     "add": "Ajouter",

@@ -67,6 +67,44 @@ export function useAuth() {
     },
   });
 
+  const signUp = useMutation({
+    mutationFn: async (params: { email: string; password: string; fullName?: string }) => {
+      const { data, error } = await supabase.auth.signUp({
+        email: params.email,
+        password: params.password,
+        options: {
+          data: {
+            full_name: params.fullName,
+          },
+        },
+      });
+      if (error) throw error;
+      if (!data.user) throw new Error('User creation failed');
+
+      // Create profile for the new user
+      const { error: profileError } = await supabase.from('profiles').insert({
+        id: data.user.id,
+        full_name: params.fullName || params.email.split('@')[0],
+        role: 'admin',
+        language: 'fr',
+        active: true,
+      });
+      if (profileError) throw profileError;
+
+      // Fetch the created profile
+      const { data: profileData, error: fetchError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', data.user.id)
+        .single();
+      if (fetchError) throw fetchError;
+
+      setProfile(profileData as Profile);
+      setLanguage((profileData as Profile).language);
+      return profileData as Profile;
+    },
+  });
+
   const signOut = useMutation({
     mutationFn: async () => {
       await supabase.auth.signOut();
@@ -80,6 +118,8 @@ export function useAuth() {
     loading: initializing || profileQuery.isFetching,
     signIn: signIn.mutateAsync,
     signingIn: signIn.isPending,
+    signUp: signUp.mutateAsync,
+    signingUp: signUp.isPending,
     signOut: signOut.mutateAsync,
     signingOut: signOut.isPending,
   };

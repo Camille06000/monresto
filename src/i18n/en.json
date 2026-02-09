@@ -18,10 +18,18 @@
   "login": {
     "title": "Sign in",
     "subtitle": "Track purchases, sales and stock in real time.",
+    "registerTitle": "Create an account",
+    "registerSubtitle": "Sign up to manage your restaurant.",
     "email": "Email",
     "password": "Password",
+    "fullName": "Full name",
     "submit": "Sign in",
-    "loading": "Signing in..."
+    "registerSubmit": "Sign up",
+    "loading": "Loading...",
+    "registered": "Account created successfully!",
+    "passwordMinLength": "Minimum 6 characters",
+    "noAccount": "No account? Sign up",
+    "hasAccount": "Already have an account? Sign in"
   },
   "actions": {
     "add": "Add",
