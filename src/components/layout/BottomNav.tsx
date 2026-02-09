@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { BarChart3, ShoppingBag, ShoppingCart, Package, UtensilsCrossed, FileText, Menu, X } from 'lucide-react';
+import { BarChart3, ShoppingBag, ShoppingCart, Package, FileText } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 import clsx from 'clsx';
 
 const items = [
