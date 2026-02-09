@@ -6,9 +6,11 @@ import { Toaster } from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 import { Layout } from './components/layout/Layout';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
+import { RequireRestaurant } from './components/layout/RequireRestaurant';
 
 // Lazy load pages for code-splitting
 const Login = lazy(() => import('./pages/Login').then((m) => ({ default: m.Login })));
+const RestaurantSelect = lazy(() => import('./pages/RestaurantSelect').then((m) => ({ default: m.RestaurantSelect })));
 const Dashboard = lazy(() => import('./pages/Dashboard').then((m) => ({ default: m.Dashboard })));
 const Purchases = lazy(() => import('./pages/Purchases').then((m) => ({ default: m.Purchases })));
 const Sales = lazy(() => import('./pages/Sales').then((m) => ({ default: m.Sales })));
@@ -46,17 +48,20 @@ export function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route element={<ProtectedRoute />}>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/purchases" element={<Purchases />} />
-                <Route path="/sales" element={<Sales />} />
-                <Route path="/stock" element={<Stock />} />
-                <Route path="/dishes" element={<Dishes />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/analytics" element={<Analytics />} />
-                <Route path="/fixed-charges" element={<FixedCharges />} />
-                <Route path="/daily-report" element={<DailyReport />} />
-                <Route path="/settings" element={<Settings />} />
+              <Route element={<RequireRestaurant />}>
+                <Route path="/restaurant" element={<RestaurantSelect />} />
+                <Route element={<Layout />}>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/purchases" element={<Purchases />} />
+                  <Route path="/sales" element={<Sales />} />
+                  <Route path="/stock" element={<Stock />} />
+                  <Route path="/dishes" element={<Dishes />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/analytics" element={<Analytics />} />
+                  <Route path="/fixed-charges" element={<FixedCharges />} />
+                  <Route path="/daily-report" element={<DailyReport />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Route>
               </Route>
             </Route>
           </Routes>

@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase, uploadToBucket } from '../lib/supabase';
+import { useStore } from '../store/useStore';
 import type { Purchase } from '../lib/types';
 
 const PURCHASES_KEY = ['purchases'];
@@ -14,17 +15,26 @@ export interface PurchasePayload {
 
 export function usePurchases() {
   const queryClient = useQueryClient();
+  const { currentRestaurant } = useStore();
+  const restaurantId = currentRestaurant?.id;
 
   const purchases = useQuery({
-    queryKey: PURCHASES_KEY,
+    queryKey: [...PURCHASES_KEY, restaurantId],
     queryFn: async (): Promise<Purchase[]> => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('purchases')
         .select('*, supplier:suppliers(*), items:purchase_items(id, product_id, quantity, unit_price, total_price, product:products(*))')
         .order('purchase_date', { ascending: false });
+
+      if (restaurantId) {
+        query = query.eq('restaurant_id', restaurantId);
+      }
+
+      const { data, error } = await query;
       if (error) throw error;
       return data as unknown as Purchase[];
     },
+    enabled: !!restaurantId,
   });
 
   const create = useMutation({
@@ -41,6 +51,7 @@ export function usePurchases() {
           purchase_date: payload.purchase_date,
           invoice_url,
           notes: payload.notes ?? null,
+          restaurant_id: restaurantId,
         })
         .select()
         .single();

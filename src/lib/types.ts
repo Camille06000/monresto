@@ -177,3 +177,31 @@ export interface DailySummaryEnhanced {
   dishes_sold: number;
   total_items: number;
 }
+
+export type RestaurantRole = 'owner' | 'admin' | 'manager' | 'staff';
+
+export interface Restaurant {
+  id: string;
+  name: string;
+  owner_id: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  logo_url?: string;
+  currency: string;
+  timezone: string;
+  settings?: Record<string, unknown>;
+  is_active: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface RestaurantMember {
+  id: string;
+  restaurant_id: string;
+  user_id: string;
+  role: RestaurantRole;
+  invited_by?: string;
+  joined_at?: string;
+  restaurant?: Restaurant;
+}

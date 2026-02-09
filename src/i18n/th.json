@@ -154,5 +154,66 @@
     "contact": "ผู้ติดต่อ",
     "phone": "โทรศัพท์",
     "email": "อีเมล"
+  },
+  "fixedCharges": {
+    "title": "ค่าใช้จ่ายประจำ",
+    "add": "เพิ่มค่าใช้จ่าย",
+    "name": "ชื่อ",
+    "amount": "จำนวน",
+    "frequency": "ความถี่",
+    "category": "หมวดหมู่",
+    "startDate": "วันที่เริ่มต้น",
+    "endDate": "วันที่สิ้นสุด",
+    "frequencies": {
+      "monthly": "รายเดือน",
+      "weekly": "รายสัปดาห์",
+      "yearly": "รายปี",
+      "daily": "รายวัน"
+    },
+    "categories": {
+      "rent": "ค่าเช่า",
+      "electricity": "ค่าไฟ",
+      "water": "ค่าน้ำ",
+      "internet": "ค่าอินเทอร์เน็ต",
+      "insurance": "ประกันภัย",
+      "salary": "เงินเดือน",
+      "other": "อื่นๆ"
+    },
+    "total": "รวมค่าใช้จ่ายรายเดือน"
+  },
+  "dailyReport": {
+    "title": "รายงานประจำวัน",
+    "date": "วันที่",
+    "dishSales": "ยอดขายตามเมนู",
+    "productConsumption": "การใช้วัตถุดิบ",
+    "dishName": "เมนู",
+    "productName": "สินค้า",
+    "quantitySold": "จำนวนขาย",
+    "quantityUsed": "จำนวนใช้",
+    "revenue": "รายได้",
+    "theoreticalCost": "ต้นทุนทฤษฎี",
+    "margin": "มาร์จิ้น",
+    "noSales": "ไม่มียอดขายวันนี้",
+    "export": "ส่งออก CSV"
+  },
+  "restaurant": {
+    "selectTitle": "เลือกร้านอาหาร",
+    "selectDescription": "เลือกร้านอาหารหรือสร้างใหม่",
+    "yourRestaurants": "ร้านอาหารของคุณ",
+    "createNew": "สร้างร้านอาหาร",
+    "name": "ชื่อร้านอาหาร",
+    "namePlaceholder": "เช่น: ร้านติตี้",
+    "address": "ที่อยู่",
+    "addressPlaceholder": "เช่น: 123 ถนนตลาด",
+    "phone": "โทรศัพท์",
+    "email": "อีเมล",
+    "create": "สร้าง",
+    "created": "สร้างร้านอาหารสำเร็จ",
+    "switched": "เลือกร้าน {{name}} แล้ว",
+    "switch": "เปลี่ยนร้านอาหาร",
+    "current": "ร้านอาหารปัจจุบัน",
+    "settings": "ตั้งค่าร้านอาหาร",
+    "members": "ทีมงาน",
+    "noRestaurant": "ไม่มีร้านอาหาร"
   }
 }

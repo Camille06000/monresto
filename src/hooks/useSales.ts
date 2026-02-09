@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../lib/supabase';
+import { useStore } from '../store/useStore';
 import type { Sale } from '../lib/types';
 
 const SALES_KEY = ['sales'];
@@ -36,23 +37,36 @@ function parseStockError(error: { message?: string; code?: string; details?: str
 
 export function useSales() {
   const queryClient = useQueryClient();
+  const { currentRestaurant } = useStore();
+  const restaurantId = currentRestaurant?.id;
 
   const sales = useQuery({
-    queryKey: SALES_KEY,
+    queryKey: [...SALES_KEY, restaurantId],
     queryFn: async (): Promise<Sale[]> => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('sales')
         .select('*, items:sale_items(id, dish_id, quantity, unit_price, total_price, dish:dishes(*))')
         .order('sale_date', { ascending: false })
         .limit(50);
+
+      if (restaurantId) {
+        query = query.eq('restaurant_id', restaurantId);
+      }
+
+      const { data, error } = await query;
       if (error) throw error;
       return data as unknown as Sale[];
     },
+    enabled: !!restaurantId,
   });
 
   const create = useMutation({
     mutationFn: async (payload: SalePayload) => {
-      const { data: sale, error } = await supabase.from('sales').insert({}).select().single();
+      const { data: sale, error } = await supabase
+        .from('sales')
+        .insert({ restaurant_id: restaurantId })
+        .select()
+        .single();
       if (error) throw parseStockError(error);
 
       const items = payload.items.map((item) => ({ ...item, sale_id: sale.id }));

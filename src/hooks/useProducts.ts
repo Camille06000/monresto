@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../lib/supabase';
+import { useStore } from '../store/useStore';
 import type { Product } from '../lib/types';
 
 const PRODUCTS_KEY = ['products'];
@@ -7,11 +8,16 @@ type RemoveResult = { id: string; archived: boolean };
 
 export function useProducts(search?: string) {
   const queryClient = useQueryClient();
+  const { currentRestaurant } = useStore();
+  const restaurantId = currentRestaurant?.id;
 
   const products = useQuery({
-    queryKey: [...PRODUCTS_KEY, search ?? 'all'],
+    queryKey: [...PRODUCTS_KEY, restaurantId, search ?? 'all'],
     queryFn: async (): Promise<Product[]> => {
       let query = supabase.from('products').select('*').eq('is_active', true).order('name');
+      if (restaurantId) {
+        query = query.eq('restaurant_id', restaurantId);
+      }
       if (search) {
         query = query.ilike('name', `%${search}%`);
       }
@@ -19,11 +25,13 @@ export function useProducts(search?: string) {
       if (error) throw error;
       return data as Product[];
     },
+    enabled: !!restaurantId,
   });
 
   const upsert = useMutation({
     mutationFn: async (payload: Partial<Product>) => {
-      const { data, error } = await supabase.from('products').upsert(payload).select().single();
+      const dataWithRestaurant = restaurantId ? { ...payload, restaurant_id: restaurantId } : payload;
+      const { data, error } = await supabase.from('products').upsert(dataWithRestaurant).select().single();
       if (error) throw error;
       return data as Product;
     },
@@ -50,7 +58,10 @@ export function useProducts(search?: string) {
   const bulkUpsert = useMutation({
     mutationFn: async (payload: Array<Partial<Product>>) => {
       if (!payload.length) return [];
-      const { error } = await supabase.from('products').upsert(payload, { onConflict: 'barcode' });
+      const dataWithRestaurant = restaurantId
+        ? payload.map(p => ({ ...p, restaurant_id: restaurantId }))
+        : payload;
+      const { error } = await supabase.from('products').upsert(dataWithRestaurant, { onConflict: 'barcode' });
       if (error) throw error;
       return payload;
     },

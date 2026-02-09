@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../lib/supabase';
+import { useStore } from '../store/useStore';
 import type { Dish, DishIngredient } from '../lib/types';
 
 const DISHES_KEY = ['dishes'];
@@ -7,16 +8,24 @@ type RemoveResult = { id: string; archived: boolean };
 
 export function useDishes() {
   const queryClient = useQueryClient();
+  const { currentRestaurant } = useStore();
+  const restaurantId = currentRestaurant?.id;
 
   const dishes = useQuery({
-    queryKey: DISHES_KEY,
+    queryKey: [...DISHES_KEY, restaurantId],
     queryFn: async (): Promise<Dish[]> => {
+      let dishQuery = supabase
+        .from('dishes')
+        .select('*, dish_ingredients(id, product_id, quantity, product:products(*))')
+        .eq('is_active', true)
+        .order('name');
+
+      if (restaurantId) {
+        dishQuery = dishQuery.eq('restaurant_id', restaurantId);
+      }
+
       const [{ data: dishesData, error }, { data: costData, error: costError }] = await Promise.all([
-        supabase
-          .from('dishes')
-          .select('*, dish_ingredients(id, product_id, quantity, product:products(*))')
-          .eq('is_active', true)
-          .order('name'),
+        dishQuery,
         supabase.from('mv_dish_costs').select('dish_id,total_cost'),
       ]);
       if (error) throw error;
@@ -30,11 +39,13 @@ export function useDishes() {
         return { ...d, cost, margin } as Dish;
       });
     },
+    enabled: !!restaurantId,
   });
 
   const upsertDish = useMutation({
     mutationFn: async (payload: Partial<Dish>) => {
-      const { data, error } = await supabase.from('dishes').upsert(payload).select().single();
+      const dataWithRestaurant = restaurantId ? { ...payload, restaurant_id: restaurantId } : payload;
+      const { data, error } = await supabase.from('dishes').upsert(dataWithRestaurant).select().single();
       if (error) throw error;
       return data as Dish;
     },

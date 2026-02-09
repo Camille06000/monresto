@@ -154,5 +154,66 @@
     "contact": "Contact",
     "phone": "Phone",
     "email": "Email"
+  },
+  "fixedCharges": {
+    "title": "Fixed Charges",
+    "add": "Add charge",
+    "name": "Name",
+    "amount": "Amount",
+    "frequency": "Frequency",
+    "category": "Category",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "frequencies": {
+      "monthly": "Monthly",
+      "weekly": "Weekly",
+      "yearly": "Yearly",
+      "daily": "Daily"
+    },
+    "categories": {
+      "rent": "Rent",
+      "electricity": "Electricity",
+      "water": "Water",
+      "internet": "Internet",
+      "insurance": "Insurance",
+      "salary": "Salary",
+      "other": "Other"
+    },
+    "total": "Total monthly charges"
+  },
+  "dailyReport": {
+    "title": "Daily Report",
+    "date": "Date",
+    "dishSales": "Sales by dish",
+    "productConsumption": "Product consumption",
+    "dishName": "Dish",
+    "productName": "Product",
+    "quantitySold": "Qty sold",
+    "quantityUsed": "Qty used",
+    "revenue": "Revenue",
+    "theoreticalCost": "Theoretical cost",
+    "margin": "Margin",
+    "noSales": "No sales this day",
+    "export": "Export CSV"
+  },
+  "restaurant": {
+    "selectTitle": "Select a restaurant",
+    "selectDescription": "Choose a restaurant or create a new one",
+    "yourRestaurants": "Your restaurants",
+    "createNew": "Create a restaurant",
+    "name": "Restaurant name",
+    "namePlaceholder": "E.g.: Chez Titi",
+    "address": "Address",
+    "addressPlaceholder": "E.g.: 123 Market Street",
+    "phone": "Phone",
+    "email": "Email",
+    "create": "Create",
+    "created": "Restaurant created successfully",
+    "switched": "Restaurant {{name}} selected",
+    "switch": "Switch restaurant",
+    "current": "Current restaurant",
+    "settings": "Restaurant settings",
+    "members": "Team",
+    "noRestaurant": "No restaurant"
   }
 }

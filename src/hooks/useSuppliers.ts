@@ -1,29 +1,40 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '../lib/supabase';
+import { useStore } from '../store/useStore';
 import type { Supplier } from '../lib/types';
 
 const SUPPLIERS_KEY = ['suppliers'];
 
 export function useSuppliers() {
   const queryClient = useQueryClient();
+  const { currentRestaurant } = useStore();
+  const restaurantId = currentRestaurant?.id;
 
   const suppliers = useQuery({
-    queryKey: SUPPLIERS_KEY,
+    queryKey: [...SUPPLIERS_KEY, restaurantId],
     queryFn: async (): Promise<Supplier[]> => {
-      const { data, error } = await supabase
+      let query = supabase
         .from('suppliers')
         .select('*')
         .order('name');
+
+      if (restaurantId) {
+        query = query.eq('restaurant_id', restaurantId);
+      }
+
+      const { data, error } = await query;
       if (error) throw error;
       return data as Supplier[];
     },
+    enabled: !!restaurantId,
   });
 
   const create = useMutation({
     mutationFn: async (payload: Omit<Supplier, 'id' | 'created_at' | 'updated_at'>) => {
+      const dataWithRestaurant = restaurantId ? { ...payload, restaurant_id: restaurantId } : payload;
       const { data, error } = await supabase
         .from('suppliers')
-        .insert(payload)
+        .insert(dataWithRestaurant)
         .select()
         .single();
       if (error) throw error;

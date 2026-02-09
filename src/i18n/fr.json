@@ -197,5 +197,25 @@
     "margin": "Marge",
     "noSales": "Aucune vente ce jour",
     "export": "Exporter CSV"
+  },
+  "restaurant": {
+    "selectTitle": "Choisir un restaurant",
+    "selectDescription": "Sélectionnez un restaurant ou créez-en un nouveau",
+    "yourRestaurants": "Vos restaurants",
+    "createNew": "Créer un restaurant",
+    "name": "Nom du restaurant",
+    "namePlaceholder": "Ex: Chez Titi",
+    "address": "Adresse",
+    "addressPlaceholder": "Ex: 123 rue du marché",
+    "phone": "Téléphone",
+    "email": "Email",
+    "create": "Créer",
+    "created": "Restaurant créé avec succès",
+    "switched": "Restaurant {{name}} sélectionné",
+    "switch": "Changer de restaurant",
+    "current": "Restaurant actuel",
+    "settings": "Paramètres restaurant",
+    "members": "Équipe",
+    "noRestaurant": "Aucun restaurant"
   }
 }
