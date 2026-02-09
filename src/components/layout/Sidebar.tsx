@@ -8,6 +8,8 @@ import {
   Settings,
   LineChart,
   Database,
+  Wallet,
+  FileText,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
@@ -19,6 +21,8 @@ const links = [
   { to: '/stock', icon: Package, key: 'stock' },
   { to: '/dishes', icon: UtensilsCrossed, key: 'dishes' },
   { to: '/products', icon: Database, key: 'products' },
+  { to: '/daily-report', icon: FileText, key: 'dailyReport' },
+  { to: '/fixed-charges', icon: Wallet, key: 'fixedCharges' },
   { to: '/analytics', icon: LineChart, key: 'analytics' },
   { to: '/settings', icon: Settings, key: 'settings' },
 ];

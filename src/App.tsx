@@ -17,6 +17,8 @@ const Dishes = lazy(() => import('./pages/Dishes').then((m) => ({ default: m.Dis
 const Products = lazy(() => import('./pages/Products').then((m) => ({ default: m.Products })));
 const Analytics = lazy(() => import('./pages/Analytics').then((m) => ({ default: m.Analytics })));
 const Settings = lazy(() => import('./pages/Settings').then((m) => ({ default: m.Settings })));
+const FixedCharges = lazy(() => import('./pages/FixedCharges').then((m) => ({ default: m.FixedCharges })));
+const DailyReport = lazy(() => import('./pages/DailyReport').then((m) => ({ default: m.DailyReport })));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +54,8 @@ export function App() {
                 <Route path="/dishes" element={<Dishes />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/fixed-charges" element={<FixedCharges />} />
+                <Route path="/daily-report" element={<DailyReport />} />
                 <Route path="/settings" element={<Settings />} />
               </Route>
             </Route>

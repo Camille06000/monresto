@@ -34,7 +34,8 @@
     "validatePurchase": "Save purchase",
     "newPurchase": "New purchase",
     "newDish": "New dish",
-    "adjustStock": "Stock adjustment"
+    "adjustStock": "Stock adjustment",
+    "confirmDelete": "Confirm delete?"
   },
   "dashboard": {
     "today": "Today",
@@ -92,7 +93,10 @@
     "addIngredient": "Add ingredient",
     "cost": "Cost",
     "margin": "Margin",
-    "name": "Name"
+    "name": "Name",
+    "photo": "Photo",
+    "photoReady": "Photo ready to upload",
+    "noPhoto": "No photo"
   },
   "products": {
     "title": "Products",
@@ -101,7 +105,21 @@
     "reorderLevel": "Reorder level",
     "lastPrice": "Last price",
     "category": "Category",
-    "add": "Add product"
+    "add": "Add product",
+    "emptyCta": "No products yet. Add products to continue.",
+    "importTitle": "Import products",
+    "importTemplate": "Download template",
+    "importHint": "CSV import columns: name, unit, category, reorder_level, last_price, barcode, name_th, name_en.",
+    "importFile": "CSV file",
+    "importButton": "Import",
+    "importNoFile": "Choose a CSV file.",
+    "importEmpty": "File is empty.",
+    "importNothing": "Nothing to import.",
+    "importDone": "Import complete.",
+    "importRow": "Row",
+    "importMissingFields": "missing required fields (name, unit)",
+    "importInvalidNumber": "invalid number",
+    "importReport": "Total: {{total}} | Imported: {{imported}} | Skipped: {{skipped}}"
   },
   "settings": {
     "title": "Settings",
@@ -120,7 +138,9 @@
   "alerts": {
     "insufficientStock": "Not enough stock",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "archived": "Delete failed, item archived.",
+    "adminOnly": "Admins/managers only."
   },
   "common": {
     "loading": "Loading...",

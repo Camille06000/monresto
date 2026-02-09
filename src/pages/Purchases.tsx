@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Plus, X } from 'lucide-react';
 import { usePurchases } from '../hooks/usePurchases';
@@ -32,6 +33,7 @@ type SupplierFormValues = {
 export function Purchases() {
   const { t } = useTranslation();
   const { language } = useStore();
+  const navigate = useNavigate();
   const { purchases, create } = usePurchases();
   const { products } = useProducts();
   const { suppliers, create: createSupplier } = useSuppliers();
@@ -50,6 +52,7 @@ export function Purchases() {
   });
 
   const { fields, append, remove } = useFieldArray({ control: form.control, name: 'items' });
+  const showProductCta = !products.isLoading && (products.data?.length ?? 0) === 0;
 
   const onSubmit = async (values: PurchaseFormValues) => {
     try {
@@ -97,6 +100,15 @@ export function Purchases() {
           {t('purchases.addProduct')}
         </Button>
       </div>
+
+      {showProductCta && (
+        <div className="glass rounded-xl p-4 flex items-center justify-between gap-3">
+          <p className="text-sm text-gray-300">{t('products.emptyCta')}</p>
+          <Button type="button" variant="secondary" onClick={() => navigate('/products')}>
+            {t('products.add')}
+          </Button>
+        </div>
+      )}
 
       {/* Supplier creation modal */}
       {showSupplierForm && (

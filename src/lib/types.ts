@@ -124,3 +124,56 @@ export interface DailySummary {
   gross_margin_percent: number;
   total_sales: number;
 }
+
+export type ChargeFrequency = 'daily' | 'weekly' | 'monthly' | 'yearly';
+
+export interface FixedCharge {
+  id: string;
+  name: string;
+  amount: number;
+  frequency: ChargeFrequency;
+  category?: string;
+  start_date: string;
+  end_date?: string | null;
+  notes?: string;
+  is_active: boolean;
+  created_by?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface DailyDishSale {
+  sale_day: string;
+  dish_id: string;
+  dish_name: string;
+  name_th?: string;
+  name_en?: string;
+  unit_price: number;
+  total_quantity: number;
+  total_revenue: number;
+  unit_cost: number;
+  total_cost: number;
+  gross_margin: number;
+}
+
+export interface DailyProductConsumption {
+  sale_day: string;
+  product_id: string;
+  product_name: string;
+  name_th?: string;
+  name_en?: string;
+  unit: string;
+  last_price: number;
+  total_consumed: number;
+  total_cost: number;
+}
+
+export interface DailySummaryEnhanced {
+  sale_day: string;
+  revenue: number;
+  theoretical_cost: number;
+  gross_margin: number;
+  margin_percent: number;
+  dishes_sold: number;
+  total_items: number;
+}

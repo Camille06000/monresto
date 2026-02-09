@@ -13,7 +13,9 @@
     "dishes": "Plats",
     "products": "Produits",
     "analytics": "Analytics",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "fixedCharges": "Charges fixes",
+    "dailyReport": "Rapport journalier"
   },
   "login": {
     "title": "Connexion",
@@ -34,7 +36,8 @@
     "validatePurchase": "Valider achat",
     "newPurchase": "Nouvel achat",
     "newDish": "Nouveau plat",
-    "adjustStock": "Ajustement stock"
+    "adjustStock": "Ajustement stock",
+    "confirmDelete": "Confirmer la suppression ?"
   },
   "dashboard": {
     "today": "Aujourd'hui",
@@ -92,7 +95,10 @@
     "addIngredient": "Ajouter ingrédient",
     "cost": "Coût",
     "margin": "Marge",
-    "name": "Nom"
+    "name": "Nom",
+    "photo": "Photo",
+    "photoReady": "Photo prete a l'import",
+    "noPhoto": "Sans photo"
   },
   "products": {
     "title": "Produits",
@@ -101,7 +107,21 @@
     "reorderLevel": "Seuil alerte",
     "lastPrice": "Dernier prix",
     "category": "Catégorie",
-    "add": "Ajouter produit"
+    "add": "Ajouter produit",
+    "emptyCta": "Aucun produit. Ajoutez d'abord vos produits pour continuer.",
+    "importTitle": "Import produits",
+    "importTemplate": "Telecharger le template",
+    "importHint": "Import CSV avec colonnes: name, unit, category, reorder_level, last_price, barcode, name_th, name_en.",
+    "importFile": "Fichier CSV",
+    "importButton": "Importer",
+    "importNoFile": "Choisissez un fichier CSV.",
+    "importEmpty": "Le fichier est vide.",
+    "importNothing": "Aucune ligne importable.",
+    "importDone": "Import termine.",
+    "importRow": "Ligne",
+    "importMissingFields": "champs obligatoires manquants (name, unit)",
+    "importInvalidNumber": "nombre invalide",
+    "importReport": "Total: {{total}} | Importes: {{imported}} | Ignores: {{skipped}}"
   },
   "settings": {
     "title": "Paramètres",
@@ -120,7 +140,9 @@
   "alerts": {
     "insufficientStock": "Stock insuffisant",
     "error": "Erreur",
-    "success": "Succès"
+    "success": "Succès",
+    "archived": "Suppression impossible, element archive.",
+    "adminOnly": "Action reservee aux admins/manager."
   },
   "common": {
     "loading": "Chargement...",
@@ -134,5 +156,46 @@
     "contact": "Contact",
     "phone": "Téléphone",
     "email": "Email"
+  },
+  "fixedCharges": {
+    "title": "Charges fixes",
+    "add": "Ajouter charge",
+    "name": "Nom",
+    "amount": "Montant",
+    "frequency": "Fréquence",
+    "category": "Catégorie",
+    "startDate": "Date début",
+    "endDate": "Date fin",
+    "frequencies": {
+      "monthly": "Mensuel",
+      "weekly": "Hebdomadaire",
+      "yearly": "Annuel",
+      "daily": "Journalier"
+    },
+    "categories": {
+      "rent": "Loyer",
+      "electricity": "Électricité",
+      "water": "Eau",
+      "internet": "Internet",
+      "insurance": "Assurance",
+      "salary": "Salaire",
+      "other": "Autre"
+    },
+    "total": "Total charges mensuelles"
+  },
+  "dailyReport": {
+    "title": "Rapport journalier",
+    "date": "Date",
+    "dishSales": "Ventes par plat",
+    "productConsumption": "Consommation produits",
+    "dishName": "Plat",
+    "productName": "Produit",
+    "quantitySold": "Qté vendue",
+    "quantityUsed": "Qté utilisée",
+    "revenue": "CA",
+    "theoreticalCost": "Coût théorique",
+    "margin": "Marge",
+    "noSales": "Aucune vente ce jour",
+    "export": "Exporter CSV"
   }
 }

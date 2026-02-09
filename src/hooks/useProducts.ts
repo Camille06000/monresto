@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase';
 import type { Product } from '../lib/types';
 
 const PRODUCTS_KEY = ['products'];
+type RemoveResult = { id: string; archived: boolean };
 
 export function useProducts(search?: string) {
   const queryClient = useQueryClient();
@@ -10,7 +11,7 @@ export function useProducts(search?: string) {
   const products = useQuery({
     queryKey: [...PRODUCTS_KEY, search ?? 'all'],
     queryFn: async (): Promise<Product[]> => {
-      let query = supabase.from('products').select('*').order('name');
+      let query = supabase.from('products').select('*').eq('is_active', true).order('name');
       if (search) {
         query = query.ilike('name', `%${search}%`);
       }
@@ -46,11 +47,29 @@ export function useProducts(search?: string) {
     },
   });
 
-  const remove = useMutation({
-    mutationFn: async (id: string) => {
-      const { error } = await supabase.from('products').delete().eq('id', id);
+  const bulkUpsert = useMutation({
+    mutationFn: async (payload: Array<Partial<Product>>) => {
+      if (!payload.length) return [];
+      const { error } = await supabase.from('products').upsert(payload, { onConflict: 'barcode' });
       if (error) throw error;
-      return id;
+      return payload;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: PRODUCTS_KEY });
+    },
+  });
+
+  const remove = useMutation({
+    mutationFn: async (id: string): Promise<RemoveResult> => {
+      const { error } = await supabase.from('products').delete().eq('id', id);
+      if (!error) return { id, archived: false };
+      const isFkError = error.code === '23503' || error.message?.toLowerCase().includes('foreign key');
+      if (isFkError) {
+        const { error: archiveError } = await supabase.from('products').update({ is_active: false }).eq('id', id);
+        if (archiveError) throw archiveError;
+        return { id, archived: true };
+      }
+      throw error;
     },
     onMutate: async (id) => {
       await queryClient.cancelQueries({ queryKey: PRODUCTS_KEY });
@@ -74,6 +93,7 @@ export function useProducts(search?: string) {
   return {
     products,
     upsert,
+    bulkUpsert,
     remove,
   };
 }

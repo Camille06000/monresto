@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase';
 import type { Dish, DishIngredient } from '../lib/types';
 
 const DISHES_KEY = ['dishes'];
+type RemoveResult = { id: string; archived: boolean };
 
 export function useDishes() {
   const queryClient = useQueryClient();
@@ -58,5 +59,36 @@ export function useDishes() {
     },
   });
 
-  return { dishes, upsertDish, setIngredients };
+  const remove = useMutation({
+    mutationFn: async (id: string): Promise<RemoveResult> => {
+      const { error } = await supabase.from('dishes').delete().eq('id', id);
+      if (!error) return { id, archived: false };
+      const isFkError = error.code === '23503' || error.message?.toLowerCase().includes('foreign key');
+      if (isFkError) {
+        const { error: archiveError } = await supabase.from('dishes').update({ is_active: false }).eq('id', id);
+        if (archiveError) throw archiveError;
+        return { id, archived: true };
+      }
+      throw error;
+    },
+    onMutate: async (id) => {
+      await queryClient.cancelQueries({ queryKey: DISHES_KEY });
+      const previous = queryClient.getQueryData<Dish[]>(DISHES_KEY);
+      if (previous) {
+        queryClient.setQueryData(
+          DISHES_KEY,
+          previous.filter((d) => d.id !== id),
+        );
+      }
+      return { previous };
+    },
+    onError: (_err, _id, ctx) => {
+      if (ctx?.previous) queryClient.setQueryData(DISHES_KEY, ctx.previous);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: DISHES_KEY });
+    },
+  });
+
+  return { dishes, upsertDish, setIngredients, remove };
 }

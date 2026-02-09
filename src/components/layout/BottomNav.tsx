@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { BarChart3, ShoppingBag, ShoppingCart, Package, UtensilsCrossed } from 'lucide-react';
+import { BarChart3, ShoppingBag, ShoppingCart, Package, UtensilsCrossed, FileText, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import clsx from 'clsx';
 
 const items = [
@@ -8,7 +9,7 @@ const items = [
   { to: '/purchases', icon: ShoppingBag, key: 'purchases' },
   { to: '/sales', icon: ShoppingCart, key: 'sales' },
   { to: '/stock', icon: Package, key: 'stock' },
-  { to: '/dishes', icon: UtensilsCrossed, key: 'dishes' },
+  { to: '/daily-report', icon: FileText, key: 'dailyReport' },
 ];
 
 export function BottomNav() {
@@ -30,7 +31,7 @@ export function BottomNav() {
               }
             >
               <Icon size={20} />
-              <span className="mt-1">{t(`nav.${item.key}`)}</span>
+              <span className="mt-1 truncate px-1">{t(`nav.${item.key}`)}</span>
             </NavLink>
           );
         })}
