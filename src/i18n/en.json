@@ -222,6 +222,23 @@
     "current": "Current restaurant",
     "settings": "Restaurant settings",
     "members": "Team",
-    "noRestaurant": "No restaurant"
+    "noRestaurant": "No restaurant",
+    "welcomeTitle": "Welcome!",
+    "welcomeDescription": "Create your restaurant to get started"
+  },
+  "receipt": {
+    "tel": "Tel",
+    "number": "Receipt",
+    "item": "Item",
+    "qty": "Qty",
+    "price": "Price",
+    "total": "TOTAL",
+    "thanks": "Thank you for your visit!",
+    "seeYouSoon": "See you soon",
+    "print": "Print",
+    "printQuestion": "Do you want to print the receipt?",
+    "history": "History",
+    "items": "items",
+    "noItems": "No items to print"
   }
 }

@@ -224,6 +224,23 @@
     "current": "Restaurant actuel",
     "settings": "Paramètres restaurant",
     "members": "Équipe",
-    "noRestaurant": "Aucun restaurant"
+    "noRestaurant": "Aucun restaurant",
+    "welcomeTitle": "Bienvenue !",
+    "welcomeDescription": "Créez votre restaurant pour commencer"
+  },
+  "receipt": {
+    "tel": "Tél",
+    "number": "Ticket",
+    "item": "Article",
+    "qty": "Qté",
+    "price": "Prix",
+    "total": "TOTAL",
+    "thanks": "Merci de votre visite !",
+    "seeYouSoon": "À bientôt",
+    "print": "Imprimer",
+    "printQuestion": "Voulez-vous imprimer le ticket ?",
+    "history": "Historique",
+    "items": "articles",
+    "noItems": "Aucun article à imprimer"
   }
 }
