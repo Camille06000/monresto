@@ -21,6 +21,9 @@ const Analytics = lazy(() => import('./pages/Analytics').then((m) => ({ default:
 const Settings = lazy(() => import('./pages/Settings').then((m) => ({ default: m.Settings })));
 const FixedCharges = lazy(() => import('./pages/FixedCharges').then((m) => ({ default: m.FixedCharges })));
 const DailyReport = lazy(() => import('./pages/DailyReport').then((m) => ({ default: m.DailyReport })));
+const AuthCallback = lazy(() => import('./pages/AuthCallback').then((m) => ({ default: m.AuthCallback })));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword').then((m) => ({ default: m.ForgotPassword })));
+const ResetPassword = lazy(() => import('./pages/ResetPassword').then((m) => ({ default: m.ResetPassword })));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,6 +50,9 @@ export function App() {
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/auth/reset-password" element={<ResetPassword />} />
             <Route element={<ProtectedRoute />}>
               <Route element={<RequireRestaurant />}>
                 <Route path="/restaurant" element={<RestaurantSelect />} />

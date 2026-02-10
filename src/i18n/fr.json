@@ -242,5 +242,42 @@
     "history": "Historique",
     "items": "articles",
     "noItems": "Aucun article à imprimer"
+  },
+  "auth": {
+    "checkEmail": "Vérifiez votre email",
+    "confirmationSent": "Un email de confirmation a été envoyé",
+    "resendConfirmation": "Renvoyer l'email",
+    "forgotPassword": "Mot de passe oublié ?",
+    "forgotPasswordDescription": "Entrez votre email pour recevoir un lien de réinitialisation",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "resetPasswordDescription": "Créez un nouveau mot de passe sécurisé",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "passwordUpdated": "Mot de passe mis à jour avec succès",
+    "sendResetLink": "Envoyer le lien",
+    "backToLogin": "Retour à la connexion",
+    "resetLinkSent": "Lien de réinitialisation envoyé",
+    "resetLinkSentTo": "Un email a été envoyé à {{email}}",
+    "sendAgain": "Renvoyer l'email",
+    "updatePassword": "Mettre à jour le mot de passe",
+    "emailConfirmed": "Email confirmé avec succès",
+    "redirecting": "Redirection en cours...",
+    "callbackError": "Une erreur s'est produite lors de la vérification",
+    "emailNotConfirmed": "Veuillez confirmer votre email avant de vous connecter"
+  },
+  "validation": {
+    "emailRequired": "Email requis",
+    "emailInvalid": "Email invalide",
+    "passwordRequired": "Mot de passe requis",
+    "passwordMin": "8 caractères minimum",
+    "passwordUppercase": "Une majuscule requise",
+    "passwordNumber": "Un chiffre requis",
+    "passwordsMatch": "Les mots de passe doivent correspondre",
+    "nameRequired": "Nom requis",
+    "nameMin": "2 caractères minimum",
+    "strengthWeak": "Faible",
+    "strengthFair": "Moyen",
+    "strengthGood": "Bon",
+    "strengthStrong": "Fort"
   }
 }

@@ -113,6 +113,37 @@ export function useAuth() {
     },
   });
 
+  // Renvoyer l'email de confirmation
+  const resendConfirmation = useMutation({
+    mutationFn: async (email: string) => {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+      });
+      if (error) throw error;
+    },
+  });
+
+  // Demander un reset de mot de passe
+  const requestPasswordReset = useMutation({
+    mutationFn: async (email: string) => {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth/reset-password`,
+      });
+      if (error) throw error;
+    },
+  });
+
+  // Mettre à jour le mot de passe
+  const updatePassword = useMutation({
+    mutationFn: async (newPassword: string) => {
+      const { error } = await supabase.auth.updateUser({
+        password: newPassword,
+      });
+      if (error) throw error;
+    },
+  });
+
   return {
     profile: profile ?? profileQuery.data ?? null,
     loading: initializing || profileQuery.isFetching,
@@ -122,5 +153,11 @@ export function useAuth() {
     signingUp: signUp.isPending,
     signOut: signOut.mutateAsync,
     signingOut: signOut.isPending,
+    resendConfirmation: resendConfirmation.mutateAsync,
+    resendingConfirmation: resendConfirmation.isPending,
+    requestPasswordReset: requestPasswordReset.mutateAsync,
+    requestingPasswordReset: requestPasswordReset.isPending,
+    updatePassword: updatePassword.mutateAsync,
+    updatingPassword: updatePassword.isPending,
   };
 }

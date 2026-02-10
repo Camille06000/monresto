@@ -240,5 +240,42 @@
     "history": "ประวัติ",
     "items": "รายการ",
     "noItems": "ไม่มีรายการให้พิมพ์"
+  },
+  "auth": {
+    "checkEmail": "ตรวจสอบอีเมลของคุณ",
+    "confirmationSent": "ส่งอีเมลยืนยันแล้ว",
+    "resendConfirmation": "ส่งอีเมลอีกครั้ง",
+    "forgotPassword": "ลืมรหัสผ่าน?",
+    "forgotPasswordDescription": "กรอกอีเมลเพื่อรับลิงก์รีเซ็ต",
+    "resetPassword": "รีเซ็ตรหัสผ่าน",
+    "resetPasswordDescription": "สร้างรหัสผ่านใหม่ที่ปลอดภัย",
+    "newPassword": "รหัสผ่านใหม่",
+    "confirmPassword": "ยืนยันรหัสผ่าน",
+    "passwordUpdated": "อัปเดตรหัสผ่านสำเร็จ",
+    "sendResetLink": "ส่งลิงก์รีเซ็ต",
+    "backToLogin": "กลับไปเข้าสู่ระบบ",
+    "resetLinkSent": "ส่งลิงก์รีเซ็ตแล้ว",
+    "resetLinkSentTo": "ส่งอีเมลไปที่ {{email}} แล้ว",
+    "sendAgain": "ส่งอีกครั้ง",
+    "updatePassword": "อัปเดตรหัสผ่าน",
+    "emailConfirmed": "ยืนยันอีเมลสำเร็จ",
+    "redirecting": "กำลังเปลี่ยนเส้นทาง...",
+    "callbackError": "เกิดข้อผิดพลาดระหว่างการยืนยัน",
+    "emailNotConfirmed": "กรุณายืนยันอีเมลก่อนเข้าสู่ระบบ"
+  },
+  "validation": {
+    "emailRequired": "ต้องกรอกอีเมล",
+    "emailInvalid": "อีเมลไม่ถูกต้อง",
+    "passwordRequired": "ต้องกรอกรหัสผ่าน",
+    "passwordMin": "อย่างน้อย 8 ตัวอักษร",
+    "passwordUppercase": "ต้องมีตัวพิมพ์ใหญ่ 1 ตัว",
+    "passwordNumber": "ต้องมีตัวเลข 1 ตัว",
+    "passwordsMatch": "รหัสผ่านต้องตรงกัน",
+    "nameRequired": "ต้องกรอกชื่อ",
+    "nameMin": "อย่างน้อย 2 ตัวอักษร",
+    "strengthWeak": "อ่อนแอ",
+    "strengthFair": "พอใช้",
+    "strengthGood": "ดี",
+    "strengthStrong": "แข็งแกร่ง"
   }
 }

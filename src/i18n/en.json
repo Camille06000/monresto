@@ -240,5 +240,42 @@
     "history": "History",
     "items": "items",
     "noItems": "No items to print"
+  },
+  "auth": {
+    "checkEmail": "Check your email",
+    "confirmationSent": "A confirmation email has been sent",
+    "resendConfirmation": "Resend email",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordDescription": "Enter your email to receive a reset link",
+    "resetPassword": "Reset password",
+    "resetPasswordDescription": "Create a new secure password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "passwordUpdated": "Password updated successfully",
+    "sendResetLink": "Send reset link",
+    "backToLogin": "Back to login",
+    "resetLinkSent": "Reset link sent",
+    "resetLinkSentTo": "An email has been sent to {{email}}",
+    "sendAgain": "Send again",
+    "updatePassword": "Update password",
+    "emailConfirmed": "Email confirmed successfully",
+    "redirecting": "Redirecting...",
+    "callbackError": "An error occurred during verification",
+    "emailNotConfirmed": "Please confirm your email before signing in"
+  },
+  "validation": {
+    "emailRequired": "Email required",
+    "emailInvalid": "Invalid email",
+    "passwordRequired": "Password required",
+    "passwordMin": "Minimum 8 characters",
+    "passwordUppercase": "One uppercase letter required",
+    "passwordNumber": "One number required",
+    "passwordsMatch": "Passwords must match",
+    "nameRequired": "Name required",
+    "nameMin": "Minimum 2 characters",
+    "strengthWeak": "Weak",
+    "strengthFair": "Fair",
+    "strengthGood": "Good",
+    "strengthStrong": "Strong"
   }
 }
