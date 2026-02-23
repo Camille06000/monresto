@@ -13,6 +13,8 @@ import {
   Wallet,
   LineChart,
   Settings,
+  Truck,
+  ClipboardList,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
@@ -31,6 +33,9 @@ const allItems = [
   { to: '/stock', icon: Package, key: 'stock' },
   { to: '/dishes', icon: UtensilsCrossed, key: 'dishes' },
   { to: '/products', icon: Database, key: 'products' },
+  { to: '/suppliers', icon: Truck, key: 'suppliers' },
+  { to: '/kitchen', icon: ClipboardList, key: 'kitchen' },
+  { to: '/delivery', icon: Truck, key: 'delivery' },
   { to: '/daily-report', icon: FileText, key: 'dailyReport' },
   { to: '/fixed-charges', icon: Wallet, key: 'fixedCharges' },
   { to: '/analytics', icon: LineChart, key: 'analytics' },

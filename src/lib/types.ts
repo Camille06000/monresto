@@ -70,6 +70,7 @@ export interface Dish {
   name: string;
   name_th?: string;
   name_en?: string;
+  category?: string;
   price: number;
   photo_url?: string | null;
   is_active: boolean;
@@ -88,14 +89,46 @@ export interface DishIngredient {
   product?: Product;
 }
 
+export type PaymentMethod = 'cash' | 'stripe' | 'omise_promptpay' | 'sumup';
+export type PaymentStatus = 'pending' | 'paid' | 'failed' | 'refunded';
+
+export type OrderType = 'dine_in' | 'delivery' | 'takeaway';
+export type DeliveryStatus = 'pending_pickup' | 'in_transit' | 'delivered';
+
+/** Payment settings stored in restaurant.settings JSONB */
+export interface PaymentSettings {
+  cash_enabled?: boolean;              // default true
+  stripe_enabled?: boolean;
+  stripe_publishable_key?: string;     // safe to store – public key only
+  omise_enabled?: boolean;
+  omise_public_key?: string;           // safe to store – public key only
+  sumup_enabled?: boolean;
+  payment_currency?: string;           // e.g. 'THB', 'EUR', 'USD'
+}
+
 export interface Sale {
   id: string;
   sale_date: string;
   total_amount: number;
+  status?: 'pending' | 'preparing' | 'ready' | 'delivered';
+  table_number?: string | null;
+  payment_method?: PaymentMethod;
+  payment_status?: PaymentStatus;
+  payment_provider_id?: string | null;
   created_by?: string | null;
   created_at?: string;
   updated_at?: string;
   items?: SaleItem[];
+  // Delivery fields
+  order_type?: OrderType;
+  delivery_name?: string | null;
+  delivery_phone?: string | null;
+  delivery_address?: string | null;
+  delivery_fee?: number;
+  delivery_requested_time?: string | null;
+  delivery_status?: DeliveryStatus | null;
+  assigned_driver_id?: string | null;
+  driver?: Profile;
 }
 
 export interface SaleItem {
@@ -143,6 +176,7 @@ export interface FixedCharge {
 }
 
 export interface DailyDishSale {
+  restaurant_id?: string;
   sale_day: string;
   dish_id: string;
   dish_name: string;
@@ -157,6 +191,7 @@ export interface DailyDishSale {
 }
 
 export interface DailyProductConsumption {
+  restaurant_id?: string;
   sale_day: string;
   product_id: string;
   product_name: string;
@@ -169,6 +204,7 @@ export interface DailyProductConsumption {
 }
 
 export interface DailySummaryEnhanced {
+  restaurant_id?: string;
   sale_day: string;
   revenue: number;
   theoretical_cost: number;
@@ -178,11 +214,12 @@ export interface DailySummaryEnhanced {
   total_items: number;
 }
 
-export type RestaurantRole = 'owner' | 'admin' | 'manager' | 'staff';
+export type RestaurantRole = 'owner' | 'admin' | 'manager' | 'staff' | 'driver';
 
 export interface Restaurant {
   id: string;
   name: string;
+  slug?: string;
   owner_id: string;
   address?: string;
   phone?: string;

@@ -12,8 +12,13 @@
     "stock": "สต็อก",
     "dishes": "เมนู",
     "products": "สินค้า",
+    "suppliers": "ซัพพลายเออร์",
     "analytics": "วิเคราะห์",
-    "settings": "ตั้งค่า"
+    "settings": "ตั้งค่า",
+    "fixedCharges": "ค่าใช้จ่ายประจำ",
+    "dailyReport": "รายงานประจำวัน",
+    "kitchen": "ครัว",
+    "delivery": "จัดส่ง"
   },
   "login": {
     "title": "เข้าสู่ระบบ",
@@ -47,13 +52,22 @@
   },
   "dashboard": {
     "today": "วันนี้",
+    "annual": "รายปี",
     "revenue": "รายได้",
     "costs": "ต้นทุน",
     "margin": "มาร์จิ้น",
-    "topDishes": "เมนูขายดี",
+    "topDishes": "เมนูขายดีแห่งปี",
     "alerts": "แจ้งเตือนสต็อก",
     "sales": "ออเดอร์",
-    "seeAll": "ดูทั้งหมด"
+    "seeAll": "ดูทั้งหมด",
+    "transactions": "ธุรกรรม",
+    "dishesSold": "เมนูที่ขาย",
+    "stockAlerts": "แจ้งเตือนสต็อก",
+    "critical": "วิกฤต",
+    "watch": "เฝ้าระวัง",
+    "noAlerts": "สต็อกปกติ",
+    "vsLastYear": "เทียบ {{year}}",
+    "monthlyRevenue": "รายได้รายเดือน"
   },
   "purchases": {
     "title": "การซื้อ",
@@ -76,7 +90,11 @@
     "cart": "ตะกร้า",
     "emptyCart": "ยังไม่มีสินค้า",
     "total": "รวม",
-    "qty": "จำนวน"
+    "qty": "จำนวน",
+    "date": "วันที่ขาย",
+    "dateToday": "วันนี้",
+    "editSale": "แก้ไขการขาย",
+    "listTitle": "ประวัติการขาย"
   },
   "stock": {
     "title": "สต็อก",
@@ -104,7 +122,27 @@
     "name": "ชื่อ",
     "photo": "??????",
     "photoReady": "???????????????",
-    "noPhoto": "????????"
+    "noPhoto": "????????",
+    "category": "หมวดหมู่",
+    "categories": {
+      "entree": "อาหารเรียกน้ำย่อย",
+      "plat": "อาหารจานหลัก",
+      "dessert": "ของหวาน",
+      "boisson": "เครื่องดื่ม"
+    },
+    "importTitle": "นำเข้าเมนู",
+    "importTemplate": "ดาวน์โหลดแม่แบบ",
+    "importHint": "CSV ที่มีคอลัมน์: name, price, category (entree/plat/dessert/boisson), name_th, name_en. หากมีเมนูชื่อเดียวกันอยู่แล้วจะถูกอัปเดต",
+    "importFile": "ไฟล์ CSV",
+    "importButton": "นำเข้า",
+    "importNoFile": "กรุณาเลือกไฟล์ CSV",
+    "importEmpty": "ไฟล์ว่างเปล่า",
+    "importNothing": "ไม่พบแถวที่นำเข้าได้",
+    "importDone": "นำเข้าสำเร็จ",
+    "importRow": "แถว",
+    "importMissingFields": "ต้องระบุชื่อ",
+    "importInvalidPrice": "ราคาไม่ถูกต้อง",
+    "importReport": "ทั้งหมด: {{total}} | นำเข้า: {{imported}} | ข้าม: {{skipped}}"
   },
   "products": {
     "title": "สินค้า",
@@ -127,17 +165,56 @@
     "importRow": "??????",
     "importMissingFields": "????????????????? (name, unit)",
     "importInvalidNumber": "????????????????",
-    "importReport": "???: {{total}} | ??????: {{imported}} | ????: {{skipped}}"
+    "importReport": "???: {{total}} | ??????: {{imported}} | ????: {{skipped}}",
+    "priceHistory": "ประวัติราคา",
+    "currentPrice": "ราคาปัจจุบัน",
+    "avgPrice": "ราคาเฉลี่ย",
+    "priceEvolution": "การเปลี่ยนแปลง",
+    "minPrice": "ต่ำสุด",
+    "maxPrice": "สูงสุด",
+    "noPriceHistory": "ยังไม่มีประวัติการซื้อ"
   },
   "settings": {
     "title": "ตั้งค่า",
     "language": "ภาษา",
     "theme": "ธีม",
-    "currency": "สกุลเงิน"
+    "currency": "สกุลเงิน",
+    "qrCode": "QR Code เมนูลูกค้า",
+    "qrDescription": "พิมพ์ QR Code นี้และวางบนโต๊ะ ลูกค้าสแกนแล้วสั่งอาหารได้เลย",
+    "qrSubtitle": "สแกนเพื่อสั่งอาหาร",
+    "printQR": "พิมพ์ QR Code",
+    "copyUrl": "คัดลอกลิงก์",
+    "logo": "โลโก้ร้านอาหาร",
+    "logoHint": "โลโก้นี้จะแสดงบนเมนูที่ลูกค้าสแกน",
+    "logoCurrent": "โลโก้ปัจจุบัน",
+    "logoUpload": "เลือกรูปภาพ",
+    "logoSave": "บันทึกโลโก้",
+    "logoSaved": "อัปเดตโลโก้แล้ว!",
+    "payment": "วิธีการชำระเงิน",
+    "paymentHint": "ตั้งค่าวิธีชำระเงินที่ลูกค้าเห็นเมื่อสั่งอาหาร",
+    "paymentEdgeFnNote": "คีย์ลับ (Stripe, Omise, SumUp) ต้องตั้งค่าฝั่งเซิร์ฟเวอร์ผ่าน Supabase Edge Functions เท่านั้น คีย์สาธารณะสามารถกรอกที่นี่ได้",
+    "paymentSaved": "บันทึกการตั้งค่าการชำระเงินแล้ว!",
+    "paymentCash": "เงินสด / ชำระที่เคาน์เตอร์",
+    "paymentCashDesc": "ลูกค้าชำระเงินสดหรือบัตรที่เคาน์เตอร์ ใช้ได้เสมอ",
+    "paymentStripeDesc": "ชำระด้วยบัตรเครดิต/เดบิตออนไลน์ผ่าน Stripe",
+    "paymentOmiseDesc": "ชำระผ่าน PromptPay QR Code (ไทย) — สแกนด้วยแอปธนาคาร",
+    "paymentSumupDesc": "ชำระผ่านเครื่อง SumUp หรือ checkout ออนไลน์",
+    "stripePublishableKey": "Stripe Publishable Key (pk_live_...)",
+    "stripeKeyHint": "คีย์สาธารณะปลอดภัยที่จะเก็บที่นี่ ห้ามกรอกคีย์ลับในช่องนี้",
+    "stripeSecretNote": "คีย์ลับ → ฝั่งเซิร์ฟเวอร์เท่านั้น:",
+    "omiseSecretNote": "คีย์ลับ Omise → ฝั่งเซิร์ฟเวอร์:",
+    "sumupSecretNote": "API Key SumUp → ฝั่งเซิร์ฟเวอร์:",
+    "delivery": "การจัดส่ง",
+    "deliveryHint": "เปิดใช้การสั่งอาหารแบบจัดส่งสำหรับร้านของคุณ",
+    "deliveryEnable": "เปิดใช้การจัดส่ง",
+    "deliveryEnableDesc": "ลูกค้าสามารถเลือกการจัดส่งในเมนูออนไลน์",
+    "deliveryFee": "ค่าจัดส่ง",
+    "deliveryFeeHint": "จำนวนที่เพิ่มอัตโนมัติในทุกออเดอร์จัดส่ง"
   },
   "analyticsPage": {
     "revenue7d": "รายได้ 7 วัน",
-    "salesPerDay": "ยอดขายต่อวัน"
+    "salesPerDay": "ยอดขาย 30 วัน",
+    "revenue12m": "รายได้รายเดือน"
   },
   "forms": {
     "required": "จำเป็นต้องกรอก",
@@ -161,7 +238,11 @@
     "name": "ชื่อ",
     "contact": "ผู้ติดต่อ",
     "phone": "โทรศัพท์",
-    "email": "อีเมล"
+    "email": "อีเมล",
+    "address": "ที่อยู่",
+    "notes": "หมายเหตุ",
+    "search": "ค้นหา",
+    "searchPlaceholder": "ค้นหาซัพพลายเออร์..."
   },
   "fixedCharges": {
     "title": "ค่าใช้จ่ายประจำ",
@@ -202,7 +283,9 @@
     "theoreticalCost": "ต้นทุนทฤษฎี",
     "margin": "มาร์จิ้น",
     "noSales": "ไม่มียอดขายวันนี้",
-    "export": "ส่งออก CSV"
+    "export": "ส่งออก CSV",
+    "exportPDF": "ส่งออก PDF",
+    "deleteNote": "หากต้องการลบการขาย ไปที่ การขาย > ประวัติ แล้วกดไอคอนถังขยะ"
   },
   "restaurant": {
     "selectTitle": "เลือกร้านอาหาร",
@@ -277,5 +360,117 @@
     "strengthFair": "พอใช้",
     "strengthGood": "ดี",
     "strengthStrong": "แข็งแกร่ง"
+  },
+  "customerMenu": {
+    "title": "เมนูของเรา",
+    "search": "ค้นหาเมนู...",
+    "addToCart": "เพิ่ม",
+    "cart": "ตะกร้า",
+    "emptyCart": "ตะกร้าว่างเปล่า",
+    "orderNow": "สั่งเลย",
+    "orderSuccess": "สั่งอาหารสำเร็จ!",
+    "orderError": "เกิดข้อผิดพลาด",
+    "total": "รวม",
+    "totalWithDelivery": "รวมค่าจัดส่ง",
+    "item": "รายการ",
+    "items": "รายการ",
+    "restaurantNotFound": "ไม่พบร้านอาหาร",
+    "noDishes": "ไม่มีเมนูให้เลือก",
+    "viewCart": "ดูตะกร้า",
+    "closeCart": "ปิด",
+    "table": "โต๊ะ",
+    "tableTitle": "หมายเลขโต๊ะของคุณ",
+    "tableSubtitle": "เลือกหรือกรอกหมายเลขโต๊ะเพื่อให้เราเสิร์ฟถึงโต๊ะ",
+    "tableCustom": "หมายเลขโต๊ะอื่น...",
+    "confirm": "ยืนยัน",
+    "categories": "หมวดหมู่",
+    "results": "ผลลัพธ์",
+    "modeDineIn": "ทานที่ร้าน",
+    "modeDelivery": "จัดส่ง",
+    "deliveryFeeInfo": "ค่าจัดส่ง: {{fee}}",
+    "deliveryFee": "ค่าจัดส่ง",
+    "deliveryFormTitle": "ข้อมูลการจัดส่ง",
+    "deliveryFormSubtitle": "กรอกข้อมูลสำหรับการจัดส่ง",
+    "deliveryName": "ชื่อของคุณ",
+    "deliveryPhone": "เบอร์โทรศัพท์",
+    "deliveryAddress": "ที่อยู่สำหรับจัดส่ง",
+    "deliveryTime": "เวลาที่ต้องการ",
+    "optional": "ไม่บังคับ"
+  },
+  "kitchen": {
+    "title": "แดชบอร์ดครัว",
+    "pending": "รอดำเนินการ",
+    "preparing": "กำลังเตรียม",
+    "ready": "พร้อมเสิร์ฟ",
+    "delivered": "เสิร์ฟแล้ว",
+    "orderNumber": "ออเดอร์",
+    "moveToPrep": "เตรียม",
+    "moveToReady": "พร้อม",
+    "moveToDelivered": "เสิร์ฟ",
+    "noOrders": "ไม่มีออเดอร์",
+    "soundOn": "เปิดเสียง",
+    "soundOff": "ปิดเสียง",
+    "table": "โต๊ะ"
+  },
+  "payment": {
+    "title": "เลือกวิธีชำระเงิน",
+    "selectMethod": "วิธีชำระเงิน",
+    "method": {
+      "cash": "เงินสด",
+      "stripe": "บัตร (Stripe)",
+      "omise_promptpay": "พร้อมเพย์",
+      "sumup": "SumUp"
+    },
+    "cardDetails": "ข้อมูลบัตร",
+    "loadingStripe": "กำลังโหลด Stripe...",
+    "stripeSecure": "การชำระเงินปลอดภัยโดย Stripe ข้อมูลของคุณถูกเข้ารหัส",
+    "pay": "ชำระเงิน",
+    "confirmOrder": "ยืนยันคำสั่งซื้อ",
+    "confirmPaid": "ยืนยันการชำระเงิน ✓",
+    "promptPayHint": "สแกน QR Code ด้วยแอปธนาคาร (SCB, กรุงเทพ, K-Bank ฯลฯ) แล้วยืนยัน",
+    "qrExpires": "หมดอายุใน",
+    "renewQr": "สร้าง QR ใหม่",
+    "omiseHint": "กดชำระเงินเพื่อสร้าง QR พร้อมเพย์",
+    "sumupHint": "หน้าชำระเงิน SumUp จะเปิดในแท็บใหม่ กลับมาที่นี่หลังชำระและยืนยัน",
+    "openSumup": "เปิดหน้า SumUp"
+  },
+  "delivery": {
+    "title": "การจัดส่ง",
+    "driverTitle": "การจัดส่งของฉัน",
+    "fee": "ค่าจัดส่ง",
+    "assign_driver": "มอบหมายคนขับ",
+    "noDriver": "— ไม่มีคนขับ —",
+    "noOrders": "ไม่มีออเดอร์",
+    "noOrdersHint": "ออเดอร์จัดส่งจะปรากฏที่นี่เมื่อมีการสั่ง",
+    "showDelivered": "ดูออเดอร์ที่จัดส่งแล้ว",
+    "hideDelivered": "ซ่อน",
+    "requestedTime": "เวลาที่ต้องการ",
+    "items": "รายการ",
+    "deliveryCount": "การจัดส่งที่กำลังดำเนินการ",
+    "noAssignedDeliveries": "ไม่มีการจัดส่งที่มอบหมาย",
+    "noAssignedHint": "ร้านอาหารจะมอบหมายการจัดส่งให้คุณเร็วๆ นี้",
+    "driverAssigned": "มอบหมายคนขับแล้ว",
+    "markedDelivered": "จัดส่งสำเร็จ",
+    "pickedUp": "รับออเดอร์แล้ว",
+    "status": {
+      "pending_pickup": "รอรับออเดอร์",
+      "in_transit": "กำลังจัดส่ง",
+      "delivered": "จัดส่งแล้ว"
+    },
+    "action": {
+      "markInTransit": "เริ่มจัดส่ง",
+      "markDelivered": "จัดส่งสำเร็จ",
+      "markPickedUp": "รับออเดอร์แล้ว"
+    }
+  },
+  "pwa": {
+    "offline": "คุณออฟไลน์อยู่",
+    "pendingOrders": "ออเดอร์รอส่ง",
+    "updateAvailable": "มีเวอร์ชันใหม่",
+    "update": "อัปเดต",
+    "offlineReady": "แอปพร้อมใช้งานออฟไลน์",
+    "orderQueued": "บันทึกออเดอร์แล้ว (จะส่งเมื่อออนไลน์)",
+    "syncSuccess": "ซิงค์ออเดอร์สำเร็จ",
+    "syncError": "ซิงค์ผิดพลาด"
   }
 }

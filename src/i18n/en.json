@@ -12,8 +12,13 @@
     "stock": "Stock",
     "dishes": "Dishes",
     "products": "Products",
+    "suppliers": "Suppliers",
     "analytics": "Analytics",
-    "settings": "Settings"
+    "settings": "Settings",
+    "fixedCharges": "Fixed Charges",
+    "dailyReport": "Daily Report",
+    "kitchen": "Kitchen",
+    "delivery": "Delivery"
   },
   "login": {
     "title": "Sign in",
@@ -47,13 +52,22 @@
   },
   "dashboard": {
     "today": "Today",
+    "annual": "Annual",
     "revenue": "Revenue",
     "costs": "Costs",
     "margin": "Margin",
-    "topDishes": "Top dishes",
+    "topDishes": "Top dishes of the year",
     "alerts": "Stock alerts",
     "sales": "Sales",
-    "seeAll": "See all"
+    "seeAll": "See all",
+    "transactions": "Transactions",
+    "dishesSold": "Dishes sold",
+    "stockAlerts": "stock alerts",
+    "critical": "Critical",
+    "watch": "Watch",
+    "noAlerts": "Stock OK",
+    "vsLastYear": "vs {{year}}",
+    "monthlyRevenue": "Monthly revenue"
   },
   "purchases": {
     "title": "Purchases",
@@ -76,7 +90,11 @@
     "cart": "Cart",
     "emptyCart": "Cart is empty",
     "total": "Total",
-    "qty": "Qty"
+    "qty": "Qty",
+    "date": "Sale date",
+    "dateToday": "Today",
+    "editSale": "Edit sale",
+    "listTitle": "Sales history"
   },
   "stock": {
     "title": "Stock",
@@ -104,7 +122,27 @@
     "name": "Name",
     "photo": "Photo",
     "photoReady": "Photo ready to upload",
-    "noPhoto": "No photo"
+    "noPhoto": "No photo",
+    "category": "Category",
+    "categories": {
+      "entree": "Starters",
+      "plat": "Main Courses",
+      "dessert": "Desserts",
+      "boisson": "Drinks"
+    },
+    "importTitle": "Import dishes",
+    "importTemplate": "Download template",
+    "importHint": "CSV with columns: name, price, category (entree/plat/dessert/boisson), name_th, name_en. Existing dishes with the same name will be updated.",
+    "importFile": "CSV file",
+    "importButton": "Import",
+    "importNoFile": "Please choose a CSV file.",
+    "importEmpty": "The file is empty.",
+    "importNothing": "No importable rows found.",
+    "importDone": "Import completed successfully.",
+    "importRow": "Row",
+    "importMissingFields": "name is required",
+    "importInvalidPrice": "invalid price",
+    "importReport": "Total: {{total}} | Imported: {{imported}} | Skipped: {{skipped}}"
   },
   "products": {
     "title": "Products",
@@ -127,17 +165,56 @@
     "importRow": "Row",
     "importMissingFields": "missing required fields (name, unit)",
     "importInvalidNumber": "invalid number",
-    "importReport": "Total: {{total}} | Imported: {{imported}} | Skipped: {{skipped}}"
+    "importReport": "Total: {{total}} | Imported: {{imported}} | Skipped: {{skipped}}",
+    "priceHistory": "Price history",
+    "currentPrice": "Current price",
+    "avgPrice": "Avg price",
+    "priceEvolution": "Evolution",
+    "minPrice": "Min",
+    "maxPrice": "Max",
+    "noPriceHistory": "No purchase history"
   },
   "settings": {
     "title": "Settings",
     "language": "Language",
     "theme": "Theme",
-    "currency": "Currency"
+    "currency": "Currency",
+    "qrCode": "Customer Menu QR Code",
+    "qrDescription": "Print this QR code and place it on tables. Customers can scan and order directly.",
+    "qrSubtitle": "Scan to order",
+    "printQR": "Print QR Code",
+    "copyUrl": "Copy link",
+    "logo": "Restaurant logo",
+    "logoHint": "This logo will appear on the customer menu scanned by your customers.",
+    "logoCurrent": "Current logo",
+    "logoUpload": "Choose an image",
+    "logoSave": "Save logo",
+    "logoSaved": "Logo updated!",
+    "payment": "Payment Methods",
+    "paymentHint": "Configure which payment options customers see when placing an order.",
+    "paymentEdgeFnNote": "Secret keys (Stripe, Omise, SumUp) must be set server-side via Supabase Edge Function secrets. Public keys can be entered here.",
+    "paymentSaved": "Payment settings saved!",
+    "paymentCash": "Cash / Pay at counter",
+    "paymentCashDesc": "Customer pays cash or card at the counter. Always available.",
+    "paymentStripeDesc": "Online card payment via Stripe.",
+    "paymentOmiseDesc": "PromptPay QR code payment (Thailand). Popular for banking app payments.",
+    "paymentSumupDesc": "Payment via SumUp card terminal or online checkout.",
+    "stripePublishableKey": "Stripe Publishable Key (pk_live_...)",
+    "stripeKeyHint": "The publishable key is safe to store here. Never enter your secret key in this field.",
+    "stripeSecretNote": "Secret key → server-side only:",
+    "omiseSecretNote": "Omise secret key → server-side:",
+    "sumupSecretNote": "SumUp API key → server-side:",
+    "delivery": "Delivery",
+    "deliveryHint": "Enable remote delivery orders for your restaurant.",
+    "deliveryEnable": "Enable delivery",
+    "deliveryEnableDesc": "Customers can choose delivery on the online menu.",
+    "deliveryFee": "Delivery fee",
+    "deliveryFeeHint": "Amount automatically added to every delivery order."
   },
   "analyticsPage": {
     "revenue7d": "Revenue (7d)",
-    "salesPerDay": "Sales per day"
+    "salesPerDay": "Sales (last 30 days)",
+    "revenue12m": "Monthly revenue"
   },
   "forms": {
     "required": "Required field",
@@ -161,7 +238,11 @@
     "name": "Name",
     "contact": "Contact",
     "phone": "Phone",
-    "email": "Email"
+    "email": "Email",
+    "address": "Address",
+    "notes": "Notes",
+    "search": "Search",
+    "searchPlaceholder": "Search for a supplier..."
   },
   "fixedCharges": {
     "title": "Fixed Charges",
@@ -202,7 +283,9 @@
     "theoreticalCost": "Theoretical cost",
     "margin": "Margin",
     "noSales": "No sales this day",
-    "export": "Export CSV"
+    "export": "Export CSV",
+    "exportPDF": "Export PDF",
+    "deleteNote": "To delete a sale, go to Sales > History and click the trash icon."
   },
   "restaurant": {
     "selectTitle": "Select a restaurant",
@@ -277,5 +360,117 @@
     "strengthFair": "Fair",
     "strengthGood": "Good",
     "strengthStrong": "Strong"
+  },
+  "customerMenu": {
+    "title": "Our Menu",
+    "search": "Search for a dish...",
+    "addToCart": "Add",
+    "cart": "Cart",
+    "emptyCart": "Your cart is empty",
+    "orderNow": "Order Now",
+    "orderSuccess": "Order placed!",
+    "orderError": "Error placing order",
+    "total": "Total",
+    "totalWithDelivery": "Total with delivery",
+    "item": "item",
+    "items": "items",
+    "restaurantNotFound": "Restaurant not found",
+    "noDishes": "No dishes available",
+    "viewCart": "View cart",
+    "closeCart": "Close",
+    "table": "Table",
+    "tableTitle": "Your table number",
+    "tableSubtitle": "Select or enter your table number so we can serve you.",
+    "tableCustom": "Other table number...",
+    "confirm": "Confirm",
+    "categories": "Categories",
+    "results": "result(s)",
+    "modeDineIn": "Dine In",
+    "modeDelivery": "Delivery",
+    "deliveryFeeInfo": "Delivery fee: {{fee}}",
+    "deliveryFee": "Delivery fee",
+    "deliveryFormTitle": "Delivery Details",
+    "deliveryFormSubtitle": "Enter your contact info for delivery.",
+    "deliveryName": "Your name",
+    "deliveryPhone": "Phone number",
+    "deliveryAddress": "Delivery address",
+    "deliveryTime": "Preferred time",
+    "optional": "optional"
+  },
+  "kitchen": {
+    "title": "Kitchen Dashboard",
+    "pending": "Pending",
+    "preparing": "Preparing",
+    "ready": "Ready",
+    "delivered": "Delivered",
+    "orderNumber": "Order",
+    "moveToPrep": "Prepare",
+    "moveToReady": "Ready",
+    "moveToDelivered": "Deliver",
+    "noOrders": "No active orders",
+    "soundOn": "Sound on",
+    "soundOff": "Sound off",
+    "table": "Table"
+  },
+  "payment": {
+    "title": "Choose payment method",
+    "selectMethod": "Payment method",
+    "method": {
+      "cash": "Cash",
+      "stripe": "Card (Stripe)",
+      "omise_promptpay": "PromptPay",
+      "sumup": "SumUp"
+    },
+    "cardDetails": "Card details",
+    "loadingStripe": "Loading Stripe...",
+    "stripeSecure": "Payments are secured by Stripe. Your data is encrypted.",
+    "pay": "Pay",
+    "confirmOrder": "Confirm order",
+    "confirmPaid": "Payment confirmed ✓",
+    "promptPayHint": "Scan this QR code with your banking app (SCB, Bangkok Bank, K-Bank, etc.) then confirm.",
+    "qrExpires": "Expires in",
+    "renewQr": "Renew QR",
+    "omiseHint": "Click Pay to generate the PromptPay QR code.",
+    "sumupHint": "A SumUp payment page will open in a new tab. Return here after paying and confirm.",
+    "openSumup": "Open SumUp page"
+  },
+  "delivery": {
+    "title": "Deliveries",
+    "driverTitle": "My Deliveries",
+    "fee": "delivery fee",
+    "assign_driver": "Assign driver",
+    "noDriver": "— No driver —",
+    "noOrders": "No active orders",
+    "noOrdersHint": "Delivery orders will appear here once placed.",
+    "showDelivered": "Show completed deliveries",
+    "hideDelivered": "Hide",
+    "requestedTime": "Requested time",
+    "items": "Items",
+    "deliveryCount": "delivery(ies) in progress",
+    "noAssignedDeliveries": "No deliveries assigned",
+    "noAssignedHint": "The restaurant will assign deliveries to you soon.",
+    "driverAssigned": "Driver assigned",
+    "markedDelivered": "Delivery completed",
+    "pickedUp": "Order picked up",
+    "status": {
+      "pending_pickup": "Awaiting pickup",
+      "in_transit": "In transit",
+      "delivered": "Delivered"
+    },
+    "action": {
+      "markInTransit": "Start delivery",
+      "markDelivered": "Mark as delivered",
+      "markPickedUp": "Picked up"
+    }
+  },
+  "pwa": {
+    "offline": "You are offline",
+    "pendingOrders": "pending order(s)",
+    "updateAvailable": "New version available",
+    "update": "Update",
+    "offlineReady": "App ready for offline use",
+    "orderQueued": "Order saved (will be sent when online)",
+    "syncSuccess": "Orders synchronized",
+    "syncError": "Sync error"
   }
 }

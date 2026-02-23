@@ -12,10 +12,13 @@
     "stock": "Stock",
     "dishes": "Plats",
     "products": "Produits",
+    "suppliers": "Fournisseurs",
     "analytics": "Analytics",
     "settings": "Paramètres",
     "fixedCharges": "Charges fixes",
-    "dailyReport": "Rapport journalier"
+    "dailyReport": "Rapport journalier",
+    "kitchen": "Cuisine",
+    "delivery": "Livraison"
   },
   "login": {
     "title": "Connexion",
@@ -49,13 +52,22 @@
   },
   "dashboard": {
     "today": "Aujourd'hui",
+    "annual": "Annuel",
     "revenue": "CA",
     "costs": "Coûts",
     "margin": "Marge",
-    "topDishes": "Top plats",
+    "topDishes": "Top plats de l'année",
     "alerts": "Alertes stock",
     "sales": "Ventes",
-    "seeAll": "Voir tout"
+    "seeAll": "Voir tout",
+    "transactions": "Transactions",
+    "dishesSold": "Plats vendus",
+    "stockAlerts": "alertes stock",
+    "critical": "Critique",
+    "watch": "À surveiller",
+    "noAlerts": "Stock OK",
+    "vsLastYear": "vs {{year}}",
+    "monthlyRevenue": "Évolution mensuelle"
   },
   "purchases": {
     "title": "Achats",
@@ -78,7 +90,11 @@
     "cart": "Panier",
     "emptyCart": "Panier vide",
     "total": "Total",
-    "qty": "Qté"
+    "qty": "Qté",
+    "date": "Date de vente",
+    "dateToday": "Aujourd'hui",
+    "editSale": "Modifier la vente",
+    "listTitle": "Historique des ventes"
   },
   "stock": {
     "title": "Stock",
@@ -106,7 +122,27 @@
     "name": "Nom",
     "photo": "Photo",
     "photoReady": "Photo prete a l'import",
-    "noPhoto": "Sans photo"
+    "noPhoto": "Sans photo",
+    "category": "Catégorie",
+    "categories": {
+      "entree": "Entrées",
+      "plat": "Plats",
+      "dessert": "Desserts",
+      "boisson": "Boissons"
+    },
+    "importTitle": "Importer des plats",
+    "importTemplate": "Télécharger le modèle",
+    "importHint": "CSV avec colonnes : name, price, category (entree/plat/dessert/boisson), name_th, name_en. Si un plat du même nom existe déjà, il sera mis à jour.",
+    "importFile": "Fichier CSV",
+    "importButton": "Importer",
+    "importNoFile": "Choisissez un fichier CSV.",
+    "importEmpty": "Le fichier est vide.",
+    "importNothing": "Aucune ligne importable.",
+    "importDone": "Import terminé avec succès.",
+    "importRow": "Ligne",
+    "importMissingFields": "nom obligatoire",
+    "importInvalidPrice": "prix invalide",
+    "importReport": "Total : {{total}} | Importés : {{imported}} | Ignorés : {{skipped}}"
   },
   "products": {
     "title": "Produits",
@@ -129,17 +165,56 @@
     "importRow": "Ligne",
     "importMissingFields": "champs obligatoires manquants (name, unit)",
     "importInvalidNumber": "nombre invalide",
-    "importReport": "Total: {{total}} | Importes: {{imported}} | Ignores: {{skipped}}"
+    "importReport": "Total: {{total}} | Importes: {{imported}} | Ignores: {{skipped}}",
+    "priceHistory": "Historique des prix",
+    "currentPrice": "Prix actuel",
+    "avgPrice": "Prix moyen",
+    "priceEvolution": "Évolution",
+    "minPrice": "Min",
+    "maxPrice": "Max",
+    "noPriceHistory": "Aucun historique d'achat"
   },
   "settings": {
     "title": "Paramètres",
     "language": "Langue",
     "theme": "Thème",
-    "currency": "Devise"
+    "currency": "Devise",
+    "qrCode": "QR Code Menu Client",
+    "qrDescription": "Imprimez ce QR code et placez-le sur les tables. Les clients pourront scanner et commander directement.",
+    "qrSubtitle": "Scannez pour commander",
+    "printQR": "Imprimer le QR Code",
+    "copyUrl": "Copier le lien",
+    "logo": "Logo du restaurant",
+    "logoHint": "Ce logo apparaîtra sur le menu client scanné par vos clients.",
+    "logoCurrent": "Logo actuel",
+    "logoUpload": "Choisir une image",
+    "logoSave": "Enregistrer le logo",
+    "logoSaved": "Logo mis à jour !",
+    "payment": "Moyens de paiement",
+    "paymentHint": "Configurez les options de paiement affichées aux clients lors de la commande.",
+    "paymentEdgeFnNote": "Les clés secrètes (Stripe, Omise, SumUp) doivent être configurées côté serveur avec les Edge Functions Supabase. Les clés publiques peuvent être saisies ici.",
+    "paymentSaved": "Paramètres de paiement enregistrés !",
+    "paymentCash": "Espèces / Paiement à la caisse",
+    "paymentCashDesc": "Le client paie en espèces ou par carte au comptoir. Toujours disponible.",
+    "paymentStripeDesc": "Paiement par carte bancaire en ligne via Stripe.",
+    "paymentOmiseDesc": "Paiement PromptPay par QR code (Thaïlande). Très populaire pour les paiements via appli bancaire.",
+    "paymentSumupDesc": "Paiement via terminal SumUp (physique) ou checkout en ligne.",
+    "stripePublishableKey": "Clé publique Stripe (pk_live_...)",
+    "stripeKeyHint": "La clé publique est sans risque à stocker ici. Ne jamais saisir la clé secrète dans ce champ.",
+    "stripeSecretNote": "Clé secrète → côté serveur uniquement :",
+    "omiseSecretNote": "Clé secrète Omise → côté serveur :",
+    "sumupSecretNote": "Clé API SumUp → côté serveur :",
+    "delivery": "Livraison",
+    "deliveryHint": "Activez la livraison à distance pour votre restaurant.",
+    "deliveryEnable": "Activer la livraison",
+    "deliveryEnableDesc": "Les clients pourront choisir la livraison sur le menu en ligne.",
+    "deliveryFee": "Frais de livraison",
+    "deliveryFeeHint": "Montant ajouté automatiquement à chaque commande de livraison."
   },
   "analyticsPage": {
     "revenue7d": "CA sur 7 jours",
-    "salesPerDay": "Ventes par jour"
+    "salesPerDay": "Ventes 30 derniers jours",
+    "revenue12m": "CA mensuel"
   },
   "forms": {
     "required": "Champ requis",
@@ -163,7 +238,11 @@
     "name": "Nom",
     "contact": "Contact",
     "phone": "Téléphone",
-    "email": "Email"
+    "email": "Email",
+    "address": "Adresse",
+    "notes": "Notes",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher un fournisseur..."
   },
   "fixedCharges": {
     "title": "Charges fixes",
@@ -204,7 +283,9 @@
     "theoreticalCost": "Coût théorique",
     "margin": "Marge",
     "noSales": "Aucune vente ce jour",
-    "export": "Exporter CSV"
+    "export": "Exporter CSV",
+    "exportPDF": "Exporter PDF",
+    "deleteNote": "Pour supprimer une vente, allez dans Ventes > Historique et cliquez sur la corbeille."
   },
   "restaurant": {
     "selectTitle": "Choisir un restaurant",
@@ -279,5 +360,117 @@
     "strengthFair": "Moyen",
     "strengthGood": "Bon",
     "strengthStrong": "Fort"
+  },
+  "customerMenu": {
+    "title": "Notre Menu",
+    "search": "Rechercher un plat...",
+    "addToCart": "Ajouter",
+    "cart": "Panier",
+    "emptyCart": "Votre panier est vide",
+    "orderNow": "Commander",
+    "orderSuccess": "Commande enregistree !",
+    "orderError": "Erreur lors de la commande",
+    "total": "Total",
+    "totalWithDelivery": "Total avec livraison",
+    "item": "article",
+    "items": "articles",
+    "restaurantNotFound": "Restaurant introuvable",
+    "noDishes": "Aucun plat disponible",
+    "viewCart": "Voir le panier",
+    "closeCart": "Fermer",
+    "table": "Table",
+    "tableTitle": "Votre numero de table",
+    "tableSubtitle": "Selectionnez ou entrez votre numero de table pour que nous vous servions.",
+    "tableCustom": "Autre numero de table...",
+    "confirm": "Confirmer",
+    "categories": "Catégories",
+    "results": "résultat(s)",
+    "modeDineIn": "Sur place",
+    "modeDelivery": "Livraison",
+    "deliveryFeeInfo": "Frais de livraison : {{fee}}",
+    "deliveryFee": "Frais de livraison",
+    "deliveryFormTitle": "Infos de livraison",
+    "deliveryFormSubtitle": "Renseignez vos coordonnées pour la livraison.",
+    "deliveryName": "Votre nom",
+    "deliveryPhone": "Téléphone",
+    "deliveryAddress": "Adresse de livraison",
+    "deliveryTime": "Heure souhaitée",
+    "optional": "optionnel"
+  },
+  "kitchen": {
+    "title": "Dashboard Cuisine",
+    "pending": "En attente",
+    "preparing": "En preparation",
+    "ready": "Prete",
+    "delivered": "Livree",
+    "orderNumber": "Commande",
+    "moveToPrep": "Preparer",
+    "moveToReady": "Pret",
+    "moveToDelivered": "Livrer",
+    "noOrders": "Aucune commande en cours",
+    "soundOn": "Son active",
+    "soundOff": "Son desactive",
+    "table": "Table"
+  },
+  "payment": {
+    "title": "Choisir un mode de paiement",
+    "selectMethod": "Mode de paiement",
+    "method": {
+      "cash": "Espèces",
+      "stripe": "Carte Stripe",
+      "omise_promptpay": "PromptPay",
+      "sumup": "SumUp"
+    },
+    "cardDetails": "Détails de la carte",
+    "loadingStripe": "Chargement Stripe...",
+    "stripeSecure": "Paiement sécurisé par Stripe. Vos données sont chiffrées.",
+    "pay": "Payer",
+    "confirmOrder": "Confirmer la commande",
+    "confirmPaid": "Paiement confirmé ✓",
+    "promptPayHint": "Scannez ce QR code avec votre appli bancaire (SCB, Bangkok Bank, K-Bank, etc.) puis validez.",
+    "qrExpires": "Expire dans",
+    "renewQr": "Renouveler le QR",
+    "omiseHint": "Cliquez sur Payer pour générer le QR PromptPay.",
+    "sumupHint": "Une page de paiement SumUp va s'ouvrir dans un nouvel onglet. Revenez ici après le paiement et confirmez.",
+    "openSumup": "Ouvrir la page SumUp"
+  },
+  "delivery": {
+    "title": "Livraisons",
+    "driverTitle": "Mes Livraisons",
+    "fee": "frais livraison",
+    "assign_driver": "Assigner un livreur",
+    "noDriver": "— Aucun livreur —",
+    "noOrders": "Aucune commande en cours",
+    "noOrdersHint": "Les commandes de livraison apparaîtront ici dès qu'elles seront passées.",
+    "showDelivered": "Voir les livraisons terminées",
+    "hideDelivered": "Masquer",
+    "requestedTime": "Heure souhaitée",
+    "items": "Articles",
+    "deliveryCount": "livraison(s) en cours",
+    "noAssignedDeliveries": "Aucune livraison assignée",
+    "noAssignedHint": "Le restaurant va vous assigner des livraisons prochainement.",
+    "driverAssigned": "Livreur assigné",
+    "markedDelivered": "Livraison terminée",
+    "pickedUp": "Commande récupérée",
+    "status": {
+      "pending_pickup": "En attente de collecte",
+      "in_transit": "En cours de livraison",
+      "delivered": "Livré"
+    },
+    "action": {
+      "markInTransit": "En cours de livraison",
+      "markDelivered": "Marquer comme livré",
+      "markPickedUp": "Commande récupérée"
+    }
+  },
+  "pwa": {
+    "offline": "Vous \u00eates hors-ligne",
+    "pendingOrders": "commande(s) en attente",
+    "updateAvailable": "Nouvelle version disponible",
+    "update": "Mettre \u00e0 jour",
+    "offlineReady": "Application pr\u00eate pour le mode hors-ligne",
+    "orderQueued": "Commande enregistr\u00e9e (sera envoy\u00e9e en ligne)",
+    "syncSuccess": "Commandes synchronis\u00e9es",
+    "syncError": "Erreur de synchronisation"
   }
 }
