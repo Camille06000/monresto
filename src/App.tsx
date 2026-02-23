@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import { RequireRestaurant } from './components/layout/RequireRestaurant';
 import { OfflineIndicator } from './components/OfflineIndicator';
 import { PWAUpdatePrompt } from './components/PWAUpdatePrompt';
+import { DeliveryAlertProvider } from './components/DeliveryAlertProvider';
 import { useOnlineSync } from './hooks/useOnlineSync';
 import { queryClient } from './lib/queryClient';
 
@@ -51,6 +52,7 @@ function AppInner() {
     <>
       <OfflineIndicator />
       <BrowserRouter>
+        <DeliveryAlertProvider />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/login" element={<Login />} />
