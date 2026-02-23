@@ -190,7 +190,6 @@ export function CustomerMenu() {
   );
 
   // Delivery settings from restaurant.settings JSONB
-  const deliveryEnabled = !!(restaurant?.settings as Record<string, unknown>)?.delivery_enabled;
   const deliveryFee = Number((restaurant?.settings as Record<string, unknown>)?.delivery_fee ?? 0);
   const hasPaymentProviders = !!(
     (paymentSettings.stripe_enabled && paymentSettings.stripe_publishable_key) ||
@@ -524,39 +523,37 @@ export function CustomerMenu() {
       </div>
 
       {/* ── DELIVERY / DINE-IN TOGGLE ─────────────────────────────────────── */}
-      {deliveryEnabled && (
-        <div className="max-w-[1400px] mx-auto px-4 py-3">
-          <div className="flex gap-2 bg-white/5 border border-white/10 rounded-2xl p-1 max-w-xs">
-            <button
-              onClick={() => setDeliveryMode(false)}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                !deliveryMode
-                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              <Home size={16} />
-              {t('customerMenu.modeDineIn')}
-            </button>
-            <button
-              onClick={() => setDeliveryMode(true)}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                deliveryMode
-                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              <Truck size={16} />
-              {t('customerMenu.modeDelivery')}
-            </button>
-          </div>
-          {deliveryMode && deliveryFee > 0 && (
-            <p className="text-xs text-gray-400 mt-2 ml-1">
-              🚴 {t('customerMenu.deliveryFeeInfo', { fee: formatCurrency(deliveryFee, restaurant?.currency || 'THB', language) })}
-            </p>
-          )}
+      <div className="max-w-[1400px] mx-auto px-4 py-3">
+        <div className="flex gap-2 bg-white/5 border border-white/10 rounded-2xl p-1 max-w-xs">
+          <button
+            onClick={() => setDeliveryMode(false)}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              !deliveryMode
+                ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <Home size={16} />
+            {t('customerMenu.modeDineIn')}
+          </button>
+          <button
+            onClick={() => setDeliveryMode(true)}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              deliveryMode
+                ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            <Truck size={16} />
+            {t('customerMenu.modeDelivery')}
+          </button>
         </div>
-      )}
+        {deliveryMode && deliveryFee > 0 && (
+          <p className="text-xs text-gray-400 mt-2 ml-1">
+            🚴 {t('customerMenu.deliveryFeeInfo', { fee: formatCurrency(deliveryFee, restaurant?.currency || 'THB', language) })}
+          </p>
+        )}
+      </div>
 
       {/* ── KIOSK BODY: sidebar + main ────────────────────────────────────── */}
       <div className="flex max-w-[1400px] mx-auto">
